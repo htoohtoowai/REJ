@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="design_doc_mode" content="canvas"/>
+<title>LENZ Connect — 全画面ワイヤーフレーム</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&family=Architects+Daughter&display=swap" rel="stylesheet"/>
+<style>
+:root{--ink:#1D1D1B;--soft:#8A8A85;--fill:#F0EFEA;--fill2:#E4E3DC;--acc:#E8A33D}
+*{box-sizing:border-box}
+body{margin:0;background:#DEDDD7;font-family:"Zen Kurenaido","Architects Daughter",cursive;color:var(--ink)}
+a{color:#A9761F}a:hover{color:#7A5514}
+.hd{position:absolute;width:1200px}
+.hd h1{font-size:34px;margin:0;font-weight:400}
+.hd p{font-size:17px;color:#5C5C57;margin:8px 0 0;line-height:1.55}
+.gh{position:absolute;width:1200px;font-size:24px;border-bottom:2.5px solid var(--ink);padding-bottom:8px}
+.gh span{font-size:16px;color:#5C5C57;margin-left:12px}
+.wrap{position:absolute}
+.lbl{display:flex;align-items:baseline;gap:8px;margin-bottom:7px}
+.lbl b{font-size:14px;background:var(--acc);border-radius:4px;padding:1px 8px;font-weight:400}
+.lbl i{font-style:normal;font-size:16px}
+.lbl u{text-decoration:none;font-size:13px;color:#6E6E69}
+.fr{background:#FFFDF7;border:2.5px solid var(--ink);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;min-height:300px;position:relative}
+.sh{display:flex;flex:1;min-height:0}
+.sd{width:84px;border-right:2px solid var(--ink);background:var(--fill);padding:8px 7px;flex:none}
+.sd .d{height:9px;background:var(--fill2);border:1.5px solid #C9C8C1;border-radius:3px;margin-bottom:7px}
+.sd .d.on{background:var(--ink);border-color:var(--ink)}
+.mn{flex:1;display:flex;flex-direction:column;min-width:0}
+.tp{height:32px;border-bottom:2px solid var(--ink);display:flex;align-items:center;gap:6px;padding:0 10px;flex:none}
+.bd{flex:1;padding:12px;min-height:0}
+.b{background:var(--fill);border:1.5px solid #C9C8C1;border-radius:3px}
+.b.d2{background:var(--fill2)}
+.b.k{background:var(--ink);border-color:var(--ink)}
+.b.a{background:var(--acc);border-color:#C9862B}
+.h9{height:9px}.h14{height:14px}.h20{height:20px}.h28{height:28px}.h40{height:40px}.h56{height:56px}.h72{height:72px}
+.w2{width:20%}.w3{width:30%}.w4{width:40%}.w5{width:50%}.w6{width:60%}.w7{width:70%}.w8{width:80%}.wf{width:100%}
+.r{display:flex;gap:7px;align-items:center}
+.c{display:flex;flex-direction:column;gap:7px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.g7{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.tx{font-size:12px;color:#6E6E69}
+.tx.s{font-size:11px}
+.hdr{font-size:13px;border-bottom:1.5px solid #C9C8C1;padding-bottom:5px;margin-bottom:8px;color:#4A4A45}
+.pill{border:1.5px solid var(--ink);border-radius:999px;font-size:10px;padding:1px 7px;flex:none}
+.pill.a{background:var(--acc)}
+.pill.k{background:var(--ink);color:#fff}
+.step{display:flex;align-items:center;gap:5px;margin-bottom:10px}
+.step .n{width:20px;height:20px;border:1.5px solid var(--ink);border-radius:50%;font-size:11px;display:flex;align-items:center;justify-content:center;flex:none}
+.step .n.on{background:var(--ink);color:#fff}
+.step .ln{flex:1;height:1.5px;background:#C9C8C1}
+.fld{margin-bottom:9px}
+.fld .k2{height:8px;width:34%;background:var(--fill2);border-radius:2px;margin-bottom:4px}
+.dlg{position:absolute;inset:0;background:rgba(29,29,27,.42);display:flex;align-items:center;justify-content:center}
+.dg{width:66%;background:#FFFDF7;border:2.5px solid var(--ink);border-radius:6px;padding:14px}
+.dg .t{font-size:15px;margin-bottom:10px}
+.foot{border-top:2px solid var(--ink);padding:8px 11px;display:flex;gap:7px;justify-content:flex-end;flex:none;background:#FFFDF7}
+.btn{border:1.5px solid var(--ink);border-radius:4px;font-size:12px;padding:4px 11px;background:#fff}
+.btn.f{background:var(--acc)}
+.btn.k{background:var(--ink);color:#fff}
+.center{min-height:300px;display:flex;align-items:center;justify-content:center;padding:22px 16px}
+.cardc{width:62%;border:2px solid var(--ink);border-radius:6px;padding:16px;background:#fff}
+.gate{border:1.5px dashed var(--ink);border-radius:4px;padding:8px;margin-bottom:9px}
+.gate .li{display:flex;align-items:center;gap:6px;font-size:11px;margin-bottom:4px}
+.gate .li .bx{width:12px;height:12px;border:1.5px solid var(--ink);border-radius:2px;flex:none}
+.gate .li .bx.on{background:var(--ink)}
+.bub{border:1.5px solid #C9C8C1;border-radius:8px;background:var(--fill);padding:6px 8px;margin-bottom:7px;max-width:72%}
+.bub.me{margin-left:auto;background:#FDF0DA;border-color:#D9C57F}
+.map{flex:1;min-height:240px;background:repeating-linear-gradient(0deg,#EDECE5 0 22px,#E2E1DA 22px 23px),repeating-linear-gradient(90deg,#EDECE5 0 22px,#E2E1DA 22px 23px);border:1.5px solid #C9C8C1;border-radius:3px;position:relative}
+.pin{position:absolute;width:22px;height:22px;border:2px solid var(--ink);border-radius:50%;background:var(--acc);font-size:10px;display:flex;align-items:center;justify-content:center}
+.note{position:absolute;width:270px;font-size:14px;color:#5C5C57;background:#FFF6D9;border:1.5px solid #D9C57F;border-radius:5px;padding:9px 11px;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="hd" style="left:80px;top:56px">
+<h1>LENZ Connect — 全画面ワイヤーフレーム</h1>
+<p>index.html の画面レジストリ 63 画面状態を、すべて低精細のワイヤーで書き出したもの。構造と要素配置のみを示し、文言・色・実データは持たせていません。役割ごとに 4 列で配置しています。</p>
+</div>
+<script src="_shared/spec-data.js"></script>
+<script>
+(function(){
+var A={};
+// ---- archetype renderers ----
+function side(on,n){var s='';for(var i=0;i<(n||7);i++)s+='<div class="d'+(i===on?' on':'')+'"></div>';return '<div class="sd">'+s+'</div>';}
+function top(extra){return '<div class="tp"><div class="b h14" style="width:22px"></div><div class="b h9 w3"></div><div style="flex:1"></div>'+(extra||'<div class="b h14" style="width:36px"></div>')+'</div>';}
+function shell(on,body,extra,n){return '<div class="sh">'+side(on,n)+'<div class="mn">'+top(extra)+'<div class="bd">'+body+'</div></div></div>';}
+function lines(n,ws){var s='';for(var i=0;i<n;i++)s+='<div class="b h9 '+(ws?ws[i%ws.length]:'wf')+'"></div>';return '<div class="c">'+s+'</div>';}
+function tbl(rows,cols){var s='<div class="r" style="margin-bottom:6px">';for(var c=0;c<cols;c++)s+='<div class="b d2 h9" style="flex:'+(c===1?3:1)+'"></div>';s+='</div>';
+ for(var r=0;r<rows;r++){s+='<div class="r" style="margin-bottom:5px;padding-bottom:5px;border-bottom:1px solid #DCDBD4">';for(var c2=0;c2<cols;c2++)s+='<div class="b h9" style="flex:'+(c2===1?3:1)+'"></div>';s+='</div>';}
+ return s;}
+function fields(n){var s='';for(var i=0;i<n;i++)s+='<div class="fld"><div class="k2"></div><div class="b h20 wf"></div></div>';return s;}
+function stepper(n,on){var s='<div class="step">';for(var i=0;i<n;i++){s+='<div class="n'+(i===on?' on':'')+'">'+(i+1)+'</div>';if(i<n-1)s+='<div class="ln"></div>';}return s+'</div>';}
+
+A.auth=function(){return '<div class="center"><div class="cardc"><div class="b h20 w4" style="margin:0 auto 14px"></div>'+fields(2)+'<div class="b a h28 wf" style="margin-top:4px"></div><div class="b h9 w5" style="margin:12px auto 0"></div></div></div>';};
+A.mfa=function(){return '<div class="center"><div class="cardc"><div class="b h20 w5" style="margin:0 auto 6px"></div><div class="tx" style="text-align:center;margin-bottom:12px">6桁コード入力</div><div class="g3" style="margin-bottom:6px"><div class="b h40"></div><div class="b h40"></div><div class="b h40"></div></div><div class="g3" style="margin-bottom:12px"><div class="b h40"></div><div class="b h40"></div><div class="b h40"></div></div><div class="b a h28 wf"></div></div></div>';};
+A.err=function(){return '<div class="center"><div style="text-align:center;width:70%"><div class="b d2 h56 w3" style="margin:0 auto 12px"></div><div class="b h14 w8" style="margin:0 auto 7px"></div><div class="b h9 w6" style="margin:0 auto 16px"></div><div class="r" style="justify-content:center"><div class="btn f">戻る</div><div class="btn">問い合わせ</div></div></div></div>';};
+A.settings=function(){return shell(6,'<div class="g2"><div><div class="hdr">プロフィール</div>'+fields(3)+'</div><div><div class="hdr">通知・言語・セキュリティ</div>'+fields(3)+'<div class="r" style="margin-top:4px"><div class="btn f">保存</div></div></div></div>');};
+A.notif=function(){var s='';for(var i=0;i<6;i++)s+='<div class="r" style="border:1.5px solid #C9C8C1;border-radius:4px;padding:7px;margin-bottom:6px;background:'+(i<2?'#FDF0DA':'#fff')+'"><div class="b h20" style="width:20px;flex:none"></div><div style="flex:1"><div class="b h9 w7" style="margin-bottom:4px"></div><div class="b h9 w3"></div></div><div class="tx s">3h</div></div>';
+ return shell(3,'<div class="r" style="margin-bottom:9px"><div class="pill k">すべて</div><div class="pill">未読</div><div class="pill">申込</div><div class="pill">出稿</div><div style="flex:1"></div><div class="tx">既読にする</div></div>'+s);};
+A.dash=function(){return shell(0,'<div class="g4" style="margin-bottom:10px"><div class="b d2 h56"></div><div class="b d2 h56"></div><div class="b d2 h56"></div><div class="b d2 h56"></div></div><div class="g2"><div style="border:1.5px solid #C9C8C1;border-radius:4px;padding:8px"><div class="hdr">今日の要対応</div>'+lines(4,['wf','w8','w7','w6'])+'</div><div style="border:1.5px solid #C9C8C1;border-radius:4px;padding:8px"><div class="hdr">出稿エラー / 期限</div>'+lines(4,['w8','wf','w6','w7'])+'</div></div>');};
+A.list=function(){return shell(1,'<div class="r" style="margin-bottom:9px"><div class="b h20 w4"></div><div class="b h20 w2"></div><div class="b h20 w2"></div><div style="flex:1"></div><div class="btn f">＋ 新規</div></div><div class="r" style="margin-bottom:7px"><div class="pill">空室</div><div class="pill">掲載中</div><div class="pill">入力不備</div><div style="flex:1"></div><div class="tx">3,612 件</div></div>'+tbl(7,6)+'<div class="tx" style="margin-top:6px">1–50 / 3,612 &nbsp;‹ ›</div>');};
+A.applist=function(){return shell(4,'<div class="r" style="margin-bottom:9px"><div class="pill k">受信</div><div class="pill">書類確認</div><div class="pill">社内審査</div><div class="pill">オーナー</div><div class="pill">承認</div><div style="flex:1"></div><div class="b h20 w2"></div></div>'+tbl(8,5));};
+A.wizard=function(st,n){return function(){return shell(1,stepper(n||3,st)+'<div class="g2">'+'<div>'+fields(3)+'</div><div>'+fields(3)+'</div></div>','<div class="tx">下書き保存</div>')+'<div class="foot" style="margin-left:84px"><div class="btn">戻る</div><div class="btn f">次へ</div></div>';};};
+A.editor=function(tab){return function(){var tabs='';['概要','建物','部屋','取引','掲載','画像','設備'].forEach(function(t,i){tabs+='<div class="pill'+(i===tab?' k':'')+'">'+t+'</div>';});
+ return shell(1,'<div class="r" style="margin-bottom:9px"><div class="b h14 w4"></div><div class="pill a">掲載中</div><div style="flex:1"></div><div class="tx">充足 82%</div></div><div class="r" style="flex-wrap:wrap;margin-bottom:10px">'+tabs+'</div><div class="g2"><div>'+fields(3)+'</div><div>'+fields(3)+'</div></div>')+'<div class="foot" style="margin-left:84px"><div class="tx" style="margin-right:auto;align-self:center">未保存 3件</div><div class="btn">破棄</div><div class="btn f">保存</div></div>';};};
+A.images=function(){var g='';for(var i=0;i<8;i++)g+='<div class="b d2 h40"></div>';
+ return shell(1,'<div class="r" style="margin-bottom:9px"><div class="b h14 w3"></div><div style="flex:1"></div><div class="gate" style="margin:0;padding:5px 8px"><div class="li"><div class="bx on"></div>36点スコア 28/36</div></div></div><div class="g4" style="margin-bottom:8px">'+g+'</div><div class="tx">カテゴリ未設定 4件 / 並べ替えはドラッグ</div>');};
+A.panorama=function(){return shell(1,'<div class="r" style="margin-bottom:9px"><div class="b h14 w3"></div><div style="flex:1"></div><div class="btn">＋ 追加</div></div><div class="g2"><div class="b d2 h72"></div><div class="b d2 h72"></div></div><div class="hdr" style="margin-top:12px">媒体別 公開可否</div>'+tbl(3,4));};
+A.publish=function(){return shell(2,'<div class="gate"><div class="li"><div class="bx on"></div>必須項目 充足</div><div class="li"><div class="bx on"></div>画像スコア 28/36 ≥ 基準</div><div class="li"><div class="bx"></div>取引条件 未確定 ← 出稿不可</div></div>'+tbl(5,4)+'<div class="r" style="margin-top:10px"><div class="btn" style="opacity:.45">一括出稿（無効）</div><div class="btn">停止</div></div>');};
+A.calendar=function(){var h='';for(var i=0;i<7;i++)h+='<div class="b d2 h14"></div>';
+ var cells='';for(var r=0;r<5;r++){for(var c=0;c<7;c++){cells+='<div class="b'+(r===1&&c===2?' a':(r===3&&c===5?' a':''))+'" style="height:34px"></div>';}}
+ return shell(5,'<div class="r" style="margin-bottom:9px"><div class="btn">‹</div><div class="b h14 w3"></div><div class="btn">›</div><div style="flex:1"></div><div class="pill k">週</div><div class="pill">リスト</div></div><div class="g7" style="margin-bottom:5px">'+h+'</div><div class="g7">'+cells+'</div>');};
+A.appdetail=function(st){return function(){return shell(4,stepper(5,st)+'<div class="g2"><div style="border:1.5px solid #C9C8C1;border-radius:4px;padding:8px"><div class="hdr">申込サマリ</div>'+lines(5,['wf','w8','w6','w7','w5'])+'</div><div style="border:1.5px solid #C9C8C1;border-radius:4px;padding:8px"><div class="hdr">書類 / 保証会社 / 履歴</div>'+lines(5,['w7','wf','w5','w8','w6'])+'</div></div>')+'<div class="foot" style="margin-left:84px"><div class="btn">否認</div><div class="btn f">承認</div></div>';};};
+A.modal=function(kind){return function(){var body=kind==='eq'?'<div class="r" style="flex-wrap:wrap;gap:6px">'+Array.from({length:12}).map(function(){return '<div class="pill">設備</div>';}).join('')+'</div>':(kind==='type'?'<div class="tx" style="margin-bottom:8px">物件名を入力して確認</div><div class="b h20 wf" style="margin-bottom:10px"></div>'+lines(2,['w8','w6']):lines(3,['wf','w8','w6']));
+ var btn=kind==='danger'?'<div class="btn k">削除</div>':'<div class="btn f">実行</div>';
+ return '<div style="filter:grayscale(1);opacity:.5">'+shell(1,tbl(5,5))+'</div><div class="dlg"><div class="dg"><div class="t"><div class="b h14 w5"></div></div>'+body+'<div class="r" style="justify-content:flex-end;margin-top:12px"><div class="btn">キャンセル</div>'+btn+'</div></div></div>';};};
+A.chat=function(){return shell(6,'<div class="sh" style="height:100%;border:1.5px solid #C9C8C1;border-radius:4px"><div style="width:33%;border-right:1.5px solid #C9C8C1;padding:7px">'+lines(6,['wf','w8','w7','wf','w6','w8'])+'</div><div class="mn" style="padding:8px"><div class="bub"><div class="b h9 wf"></div><div class="b h9 w6" style="margin-top:4px"></div></div><div class="bub me"><div class="b h9 wf"></div></div><div class="bub"><div class="b h9 w8"></div></div><div style="flex:1"></div><div class="r"><div class="b h20" style="flex:1"></div><div class="btn f">送信</div></div></div></div>');};
+A.csv=function(){return shell(6,'<div class="g2"><div><div class="hdr">出力対象・条件</div><div class="r" style="flex-wrap:wrap;gap:6px;margin-bottom:9px"><div class="pill k">物件</div><div class="pill">申込</div><div class="pill">内見</div></div>'+fields(3)+'</div><div><div class="hdr">プレビュー</div>'+tbl(5,4)+'<div class="r" style="margin-top:10px"><div class="btn">テンプレ保存</div><div class="btn f">出力</div></div></div></div>');};
+A.master=function(){return shell(6,'<div class="sh" style="height:100%;border:1.5px solid #C9C8C1;border-radius:4px"><div style="width:28%;border-right:1.5px solid #C9C8C1;padding:7px">'+lines(7,['wf','w8','w7','w6','wf','w7','w5'])+'</div><div class="mn" style="padding:8px"><div class="r" style="margin-bottom:8px"><div class="b h14 w3"></div><div style="flex:1"></div><div class="btn f">＋ 追加</div></div>'+tbl(6,4)+'</div></div>');};
+A.home=function(){var rail='';for(var i=0;i<4;i++)rail+='<div style="flex:none;width:23%"><div class="b d2 h40" style="margin-bottom:5px"></div><div class="b h9 w8"></div></div>';
+ return shell(0,'<div class="b d2 h40 wf" style="margin-bottom:5px"></div><div class="r" style="margin-bottom:11px"><div class="pill">エリア</div><div class="pill">賃料</div><div class="pill">間取り</div><div style="flex:1"></div><div class="btn f">検索</div></div><div class="g2" style="margin-bottom:11px"><div style="border:1.5px solid #C9C8C1;border-radius:4px;padding:8px"><div class="hdr">お知らせ</div>'+lines(3,['wf','w8','w6'])+'</div><div style="border:1.5px solid #C9C8C1;border-radius:4px;padding:8px"><div class="hdr">My 内見 / My 申込</div>'+lines(3,['w7','wf','w5'])+'</div></div><div class="hdr">新着・新築</div><div class="r">'+rail+'</div>',null,5);};
+A.filter=function(){return shell(1,'<div class="r" style="margin-bottom:9px"><div class="b h14 w3"></div><div style="flex:1"></div><div class="tx">該当 214 件</div></div><div class="g3">'+['エリア・沿線','賃料・面積','間取り・築年','設備','条件・タグ','取引条件'].map(function(t){return '<div style="border:1.5px solid #C9C8C1;border-radius:4px;padding:7px"><div class="hdr" style="margin-bottom:6px">'+t+'</div>'+lines(3,['wf','w7','w5'])+'</div>';}).join('')+'</div><div class="r" style="margin-top:11px"><div class="btn">条件クリア</div><div class="btn f">この条件で検索</div></div>',null,5);};
+A.map=function(){return '<div class="sh">'+side(1,5)+'<div class="mn">'+top()+'<div class="bd" style="display:flex;gap:9px"><div style="width:32%" class="c">'+lines(6,['wf','w8','w7','wf','w6','w8'])+'</div><div class="map"><div class="pin" style="left:22%;top:24%">6</div><div class="pin" style="left:52%;top:44%">12</div><div class="pin" style="left:70%;top:22%">3</div><div class="pin" style="left:38%;top:68%">9</div><div class="b" style="position:absolute;right:7px;top:7px;width:52px;height:20px"></div></div></div></div></div>';};
+A.results=function(){return shell(1,'<div class="r" style="margin-bottom:8px"><div class="tx">214 件</div><div style="flex:1"></div><div class="pill">賃料順</div><div class="pill">新着順</div><div class="pill k">比較 3</div></div>'+tbl(8,7)+'<div class="foot" style="border-top:1.5px dashed #C9C8C1;justify-content:space-between;padding:8px 0 0"><div class="tx">選択 3件</div><div class="r"><div class="btn">資料出力</div><div class="btn f">まとめて問い合わせ</div></div></div>',null,5);};
+A.detail=function(){return shell(1,'<div class="r" style="gap:9px;margin-bottom:10px"><div class="b d2 h72" style="width:44%"></div><div style="flex:1"><div class="b h14 w8" style="margin-bottom:6px"></div><div class="b h9 w5" style="margin-bottom:6px"></div><div class="b a h20 w4"></div></div></div><div class="r" style="margin-bottom:8px"><div class="pill k">概要</div><div class="pill">取引条件</div><div class="pill">設備</div></div><div class="g2">'+lines(4,['wf','w8','w6','w7'])+lines(4,['w7','wf','w5','w8'])+'</div>',null,5)+'<div class="foot" style="margin-left:84px"><div class="btn">接客モード</div><div class="btn">内見予約</div><div class="btn f">入居申込</div></div>';};
+A.customer=function(){return '<div style="display:flex;flex-direction:column;flex:1"><div class="tp" style="border-bottom:2px solid var(--ink)"><div class="b h9 w2"></div><div style="flex:1"></div><div class="pill a">接客モード</div></div><div class="bd" style="padding:14px"><div class="b d2" style="height:150px;margin-bottom:12px"></div><div class="r" style="gap:12px"><div style="flex:1"><div class="b h28 w6" style="margin-bottom:8px"></div><div class="b h14 w8"></div></div><div style="width:34%"><div class="b h14 wf" style="margin-bottom:6px"></div><div class="b h14 w8"></div></div></div><div class="tx" style="margin-top:12px">※ AD・元付情報は非表示</div></div></div>';};
+A.booking=function(){var cells='';for(var i=0;i<21;i++)cells+='<div class="b'+(i===8||i===15?' a':'')+'" style="height:22px"></div>';
+ return shell(2,'<div class="g2" style="gap:11px"><div><div class="hdr">空き枠</div><div class="g7">'+cells+'</div></div><div><div class="hdr">予約情報</div>'+fields(3)+'<div class="r"><div class="btn f">予約する</div></div></div></div>',null,5);};
+A.myviewings=function(){var s='';for(var i=0;i<3;i++)s+='<div class="r" style="border:1.5px solid #C9C8C1;border-radius:4px;padding:8px;margin-bottom:7px"><div class="b d2 h40" style="width:70px;flex:none"></div><div style="flex:1"><div class="b h9 w7" style="margin-bottom:5px"></div><div class="b h9 w4"></div></div><div class="c" style="width:96px;flex:none"><div class="btn" style="text-align:center">変更</div><div class="btn" style="text-align:center">キャンセル</div></div></div>';
+ return shell(3,'<div class="r" style="margin-bottom:9px"><div class="pill k">予定</div><div class="pill">履歴</div><div style="flex:1"></div><div class="tx">本日 2件</div></div>'+s,null,5);};
+A.myapps=function(){var s='';for(var i=0;i<4;i++)s+='<div style="border:1.5px solid #C9C8C1;border-radius:4px;padding:8px;margin-bottom:7px"><div class="r" style="margin-bottom:6px"><div class="b h9 w4"></div><div style="flex:1"></div><div class="pill'+(i===0?' a':'')+'">審査中</div></div>'+stepper(5,i%5)+'</div>';
+ return shell(4,'<div class="r" style="margin-bottom:9px"><div class="pill k">進行中</div><div class="pill">完了</div><div class="pill">取り下げ</div></div>'+s,null,5);};
+A.form=function(st){return function(){return shell(4,stepper(5,st)+'<div class="g2"><div>'+fields(3)+'</div><div>'+fields(3)+'</div></div>',null,5)+'<div class="foot" style="margin-left:84px"><div class="tx" style="margin-right:auto;align-self:center">下書き自動保存</div><div class="btn">戻る</div><div class="btn f">次へ</div></div>';};};
+A.confirm=function(){return shell(4,'<div class="hdr">入力内容の確認</div><div class="g2">'+['貴社情報','申込種別','契約情報','保証','申込者','書類'].map(function(t){return '<div style="border:1.5px solid #C9C8C1;border-radius:4px;padding:7px;margin-bottom:7px"><div class="r" style="margin-bottom:5px"><div class="tx">'+t+'</div><div style="flex:1"></div><div class="tx s">編集</div></div>'+lines(2,['wf','w6'])+'</div>';}).join('')+'</div>',null,5)+'<div class="foot" style="margin-left:84px"><div class="btn">戻る</div><div class="btn f">管理会社へ送信</div></div>';};
+A.wd=function(st){return function(){return shell(4,stepper(3,st)+'<div style="width:70%">'+(st===0?'<div class="c">'+['他物件で成約','顧客都合','条件不一致','その他'].map(function(t){return '<div class="r" style="border:1.5px solid #C9C8C1;border-radius:4px;padding:7px"><div class="bx" style="width:12px;height:12px;border:1.5px solid var(--ink);border-radius:50%"></div><div class="tx">'+t+'</div></div>';}).join('')+'</div>':(st===1?fields(2)+'<div class="b h40 wf"></div>':'<div class="gate"><div class="li"><div class="bx on"></div>取り消しできません</div><div class="li"><div class="bx"></div>内容を確認しました</div></div>'+lines(3,['wf','w8','w6'])))+'</div>',null,5)+'<div class="foot" style="margin-left:84px"><div class="btn">戻る</div><div class="btn'+(st===2?' k':' f')+'">'+(st===2?'取り下げる':'次へ')+'</div></div>';};};
+A.calc=function(){return shell(6,'<div class="g2" style="gap:11px"><div><div class="hdr">条件</div>'+fields(4)+'</div><div><div class="hdr">初期費用</div>'+tbl(6,3)+'<div class="r" style="margin-top:9px"><div class="b a h28" style="flex:1"></div></div><div class="r" style="margin-top:7px"><div class="btn">共有URL発行</div><div class="btn">PDF</div></div></div></div>',null,5);};
+
+// ---- id -> archetype ----
+var M={ "C1":A.auth,"C2":A.mfa,"C3":A.settings,"C4":A.notif,"C5.1":A.err,"C5.2":A.err,"C5.3":A.err,
+ "M1":A.dash,"M2":A.list,"M2.a":A.modal('type'),"M2.b":A.modal('danger'),
+ "M3.1":A.wizard(0,3),"M3.2":A.wizard(1,3),"M3.3":A.wizard(2,3),
+ "M4":A.editor(0),"M4.a":A.modal(),"M4.b":A.modal('danger'),"M4.c":A.modal(),
+ "M5":A.editor(1),"M5b":A.editor(2),"M6":A.editor(3),"M7":A.editor(4),
+ "M8":A.images,"M9":A.panorama,"M10":A.modal('eq'),
+ "M11":A.publish,"M11.b":A.modal('danger'),"M12":A.calendar,"M13":A.applist,
+ "M14.1":A.appdetail(0),"M14.2":A.appdetail(1),"M14.3":A.appdetail(2),"M14.4":A.appdetail(3),"M14.5":A.appdetail(4),
+ "M14.c":A.modal(),"M14a":A.modal('type'),"M14b":A.modal('danger'),
+ "M15":A.chat,"M16":A.csv,"M17":A.master,
+ "B1":A.home,"B2":A.filter,"B3":A.map,"B4":A.results,"B5":A.detail,"B6":A.customer,
+ "B7":A.booking,"B8":A.myviewings,"B8.a":A.modal(),
+ "B9.1":A.form(0),"B9.2":A.form(1),"B9.3":A.form(2),"B9.4":A.form(3),"B9.5":A.form(4),"B9.6":A.form(4),
+ "B9.d":A.modal('danger'),"B10":A.confirm,"B11":A.myapps,
+ "B11.a.1":A.wd(0),"B11.a.2":A.wd(1),"B11.a.3":A.wd(2),
+ "B12":A.chat,"B13":A.calc };
+
+var groups=[["共通","共通画面 (Common) — 認証・アカウント・通知・エラー"],
+            ["管理会社","管理会社 (Management Co.) — 物件登録から出稿・内見・申込審査まで"],
+            ["仲介会社","仲介会社 (Broker / Connect Square) — 検索・提案・内見・申込"]];
+var FW=660,FH=420,GX=46,GY=112,COLS=4,X0=80,y=200,out='';
+groups.forEach(function(g){
+  var items=window.SPECS.filter(function(s){return s.grp===g[0];});
+  out+='<div class="gh" style="left:'+X0+'px;top:'+y+'px">'+g[1]+'<span>'+items.length+' 画面状態</span></div>';
+  y+=54;
+  items.forEach(function(s,i){
+    var col=i%COLS,row=Math.floor(i/COLS);
+    var x=X0+col*(FW+GX), ty=y+row*(FH+GY);
+    var f=M[s.id]||A.list;
+    out+='<div class="wrap" style="left:'+x+'px;top:'+ty+'px;width:'+FW+'px">'
+      +'<div class="lbl"><b>'+s.id+'</b><i>'+s.jp+'</i><u>'+s.kind+' · '+s.pri+'</u></div>'
+      +'<div class="fr">'+f()+'</div></div>';
+  });
+  y+=Math.ceil(items.length/COLS)*(FH+GY)+40;
+});
+out+='<div class="note" style="left:'+X0+'px;top:'+(y+10)+'px">ワイヤーは構造の合意用です。実データ・文言・配色は既存モックと画面仕様書（PPTX）側で確定済みの内容を参照してください。</div>';
+document.body.insertAdjacentHTML('beforeend',out);
+(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(function(){
+  var heads=[].slice.call(document.querySelectorAll('.gh'));
+  var wraps=[].slice.call(document.querySelectorAll('.wrap'));
+  var yy=200,wi=0;
+  groups.forEach(function(g){
+    var n=window.SPECS.filter(function(s){return s.grp===g[0];}).length;
+    heads.shift().style.top=yy+'px';
+    yy+=54;
+    for(var r=0;r<Math.ceil(n/COLS);r++){
+      var row=wraps.slice(wi,wi+COLS);wi+=row.length;
+      var maxh=0;
+      row.forEach(function(w,c){w.style.top=yy+'px';w.style.left=(X0+c*(FW+GX))+'px';if(w.offsetHeight>maxh)maxh=w.offsetHeight;});
+      yy+=maxh+52;
+    }
+    yy+=40;
+  });
+  var note=document.querySelector('.note');if(note)note.style.top=(yy+10)+'px';
+});
+})();
+</script>
+</body>
+</html>
