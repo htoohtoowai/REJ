@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<title>LENZ Connect — 概算見積書・開発計画 v2.0</title>
+<style>
+doc-page:not(:defined){visibility:hidden}
+*{box-sizing:border-box}
+body{font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN",Arial,sans-serif;color:#0F172A}
+h1{font-size:26px;line-height:1.25;margin:0 0 4px;letter-spacing:-.01em}
+.docsub{font-size:13.5px;color:#64748B;margin:0 0 4px}
+.docmeta{font-size:11px;color:#64748B;border-top:2px solid #0F172A;padding-top:7px;margin:13px 0 20px;display:flex;flex-wrap:wrap;gap:3px 20px}
+h2{font-size:16.5px;margin:28px 0 9px;padding-bottom:5px;border-bottom:1.5px solid #0F172A}
+h3{font-size:13.5px;margin:18px 0 6px;color:#1E293B}
+h4{font-size:12px;margin:14px 0 5px;color:#475569;text-transform:uppercase;letter-spacing:.06em}
+p,li{font-size:12.5px;line-height:1.65}
+p{margin:0 0 8px}
+ul{margin:0 0 9px;padding-left:18px}li{margin-bottom:3px}
+small{font-size:11px;color:#64748B}
+table{width:100%;border-collapse:collapse;margin:7px 0 13px;font-size:11.5px}
+thead th{background:#F6F8FA;text-align:left;font-weight:700;padding:6px 7px;border-bottom:1.5px solid #0F172A;white-space:nowrap;font-size:10.5px}
+td{padding:5px 7px;border-bottom:1px solid #EAEEF3;vertical-align:top;line-height:1.5}
+.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.c{text-align:center;white-space:nowrap}
+tr.mid td{background:#FBFCFD;font-weight:600}
+tr.sum td{border-top:1.5px solid #0F172A;border-bottom:1.5px solid #0F172A;font-weight:700;background:#F6F8FA}
+tr.grand td{border-top:2px solid #0F172A;border-bottom:2.5px double #0F172A;font-weight:700;font-size:12px}
+.tag{display:inline-block;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;background:#E7EBF0;color:#475569;vertical-align:1px}
+.tag.new{background:#0F172A;color:#fff}.tag.ext{background:#DCE3EA;color:#334155}.tag.hold{background:#FDF0D5;color:#92400E}
+.scope{border:2px solid #0F172A;padding:13px 15px;margin:0 0 18px;break-inside:avoid}
+.scope .t{font-size:13px;font-weight:700;margin-bottom:6px}
+.scope p{font-size:12.5px;margin:0 0 6px}.scope p:last-child{margin:0}
+.callout{background:#FEF6E7;border:1px solid #F5DFB4;border-left:3px solid #E0A63C;padding:9px 12px;margin:11px 0 13px;break-inside:avoid}
+.callout p{margin:0 0 5px;font-size:12px}.callout p:last-child{margin:0}
+.callout b{color:#B45309}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0 16px}
+.kpi div{border:1px solid #D8DEE7;padding:8px 10px;break-inside:avoid}
+.kpi .k{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#64748B;font-weight:700}
+.kpi .v{font-size:19px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums;line-height:1.1}
+.kpi .u{font-size:10px;color:#64748B;margin-top:2px}
+.gbar{height:12px;background:#0F172A;display:block;border-radius:2px}
+.gbar.p2{background:#64748B}.gbar.p3{background:#C3CCD6}
+.foot{margin-top:22px;border-top:1px solid #D8DEE7;padding-top:8px;font-size:10px;color:#64748B}
+h2,h3,h4{break-after:avoid}tr{break-inside:avoid}
+</style>
+</head>
+<body>
+<doc-page margin="0.65in">
+
+<h1>LENZ Connect（tp-goodlife）<br/>概算見積書・開発計画</h1>
+<p class="docsub">賃貸業者間流通プラットフォーム — いい生活Square 置き換え</p>
+<div class="docmeta">
+  <span><b>文書区分</b> 概算見積（ROM／精度 −20%〜+40%）</span>
+  <span><b>版</b> v2.0</span>
+  <span><b>作成日</b> 2026年8月21日</span>
+</div>
+
+<div class="scope">
+<div class="t">■ 本見積の対象範囲（必ずお読みください）</div>
+<p><b>第1〜7章は「基本スコープ」＝設計確定済みの 38画面／63画面状態 のみ</b>の見積です（997人日・約5,982万円）。</p>
+<p><b>2026年8月3日のお打ち合わせで「対応可」とご回答した追加ご要望 28項目は、第1〜7章には含まれておりません。</b>これらは <b>付録A（第9章）</b> に項目別で概算を記載しています（419人日・約2,514万円）。</p>
+<p>両方を実施する場合の全体規模は <b>約1,416人日／約8,496万円</b> です。付録Aの各項目は、優先度シートのご確定をもって本体スコープへ組み入れます。</p>
+</div>
+
+<h2>1. エグゼクティブサマリー</h2>
+
+<div class="kpi">
+  <div><div class="k">基本スコープ</div><div class="v">997</div><div class="u">人日 / 約5,982万円</div></div>
+  <div><div class="k">付録A 追加要望</div><div class="v">419</div><div class="u">人日 / 約2,514万円</div></div>
+  <div><div class="k">全体規模</div><div class="v">約8,496</div><div class="u">万円（税別・単価6万円）</div></div>
+  <div><div class="k">期間</div><div class="v">10<span style="font-size:11px">〜14ヶ月</span></div><div class="u">発注月+1 起算</div></div>
+</div>
+
+<table>
+<thead><tr><th>区分</th><th>内容</th><th class="c">画面／項目</th><th class="n">人日</th><th class="n">概算費用</th></tr></thead>
+<tbody>
+<tr><td><b>基本スコープ</b></td><td>設計確定済みの 38画面／63状態。物件管理・出稿・内見・申込・チャット・CSV・マスタ</td><td class="c">38画面<br/><small>63状態</small></td><td class="n">997</td><td class="n">約5,982万円</td></tr>
+<tr><td><b>付録A</b><br/><small>8/3 確定分</small></td><td>メール一斉配信・仲介業者管理（反社／電話認証）・保証会社API・eKYC・親子連携・電子契約・棟ページ・スマートロック 他</td><td class="c">28項目</td><td class="n">419</td><td class="n">約2,514万円</td></tr>
+<tr class="grand"><td colspan="2">合計（基本＋付録A）</td><td class="c">—</td><td class="n">1,416</td><td class="n">約8,496万円</td></tr>
+<tr><td><b>付録B</b><br/><small>範囲判断待ち</small></td><td>自社HP（B2C）＋ページ編集機能＋アクセス分析＋駐車場専用ページ</td><td class="c">4項目</td><td class="n">114〜174</td><td class="n">約684〜1,044万円</td></tr>
+</tbody>
+</table>
+
+<h2>2. 見積前提</h2>
+<table>
+<thead><tr><th style="width:26%">項目</th><th>前提値</th></tr></thead>
+<tbody>
+<tr><td>対象画面数</td><td><b>38画面／63画面状態</b>（画面仕様書のシート構成と一致）。「画面」＝独立した画面ID、「状態」＝モーダル・ウィザード各ステップを含む描画単位</td></tr>
+<tr><td>人日単価</td><td>ブレンド単価 <b>60,000円／人日</b>（税別）。役割別単価が確定次第、第7章のレンジで再計算</td></tr>
+<tr><td>稼働日</td><td>月20営業日。<b>工数÷期間÷20＝FTE</b>（第6章は実人数ではなくFTEで記載）</td></tr>
+<tr><td>着手時期</td><td><b>発注月を M0 とし、着手は M+1</b>。発注時期は貴社ご協議中のため、本書の日程は全て発注月からの相対月で記載します（発注が後ろ倒しになれば全体も同月数後ろ倒し）</td></tr>
+<tr><td>多言語</td><td>JP／EN の2言語。共通ヘルパーで文言切替のため画面工数に内包</td></tr>
+<tr><td>デザイン</td><td>63画面状態のモックアップ確定済み。新規デザイン工数は含まず、微修正のみ計上</td></tr>
+<tr><td>リスクバッファ</td><td>積上小計に対し <b>15%</b></td></tr>
+</tbody>
+</table>
+
+<h2>3. フェーズ分割の方針</h2>
+
+<div class="callout">
+<p><b>8月3日のお打ち合わせでのご合意に基づき、フェーズは「優先度」で分割します</b>（優先度高＝フェーズ1／優先度低＝フェーズ2）。役割別（管理会社→仲介会社）の分割ではありません。</p>
+<p>現在、貴社にて優先度シートのご精査をいただいている段階のため、<b>下表の割当は暫定です。</b>優先度のご確定をもって、本見積の内訳（第4章は小項目単位で分解済み）をそのまま組み替えて確定版とします。工数総額は組み替えによって変動しません。</p>
+</div>
+
+<table>
+<thead><tr><th>フェーズ</th><th>割当基準</th><th>暫定スコープ</th><th class="n">人日</th><th class="c">リリース</th></tr></thead>
+<tbody>
+<tr><td><b>Phase 1</b></td><td>優先度 <b>高</b></td><td>共通基盤・認証／物件登録・編集／画像・出稿コントロール／媒体連携／内見予約／Square移行</td><td class="n">572</td><td class="c">M+6 末</td></tr>
+<tr><td><b>Phase 2</b></td><td>優先度 <b>低</b></td><td>仲介会社ポータル（Connect Square）／申込フロー（両者）／チャット／CSV・帳票／マスタデータ設定／GMO Sign・Obic ERP</td><td class="n">425</td><td class="c">M+10 末</td></tr>
+<tr class="sum"><td colspan="3">基本スコープ 合計</td><td class="n">997</td><td class="c">—</td></tr>
+</tbody>
+</table>
+<p><small>付録Aを本体に組み入れる場合、体制据え置きなら全体は <b>M+13〜14</b> まで延伸します（第9章末尾参照）。</small></p>
+
+<h2>4. 工数サマリー（大項目）</h2>
+<table>
+<thead><tr><th class="c" style="width:30px">No</th><th>大項目</th><th class="n">Phase 1</th><th class="n">Phase 2</th><th class="n">小計</th><th class="n">構成比</th></tr></thead>
+<tbody>
+<tr><td class="c">1</td><td>プロジェクト管理・要件定義</td><td class="n">75</td><td class="n">48</td><td class="n">123</td><td class="n">14.2%</td></tr>
+<tr><td class="c">2</td><td>設計（アーキテクチャ・UI/UX）</td><td class="n">55</td><td class="n">5</td><td class="n">60</td><td class="n">6.9%</td></tr>
+<tr><td class="c">3</td><td>共通基盤</td><td class="n">75</td><td class="n">6</td><td class="n">81</td><td class="n">9.3%</td></tr>
+<tr><td class="c">4</td><td>管理会社機能</td><td class="n">120</td><td class="n">75</td><td class="n">195</td><td class="n">22.5%</td></tr>
+<tr><td class="c">5</td><td>仲介会社機能（Connect Square）</td><td class="n">—</td><td class="n">150</td><td class="n">150</td><td class="n">17.3%</td></tr>
+<tr><td class="c">6</td><td>外部連携</td><td class="n">92</td><td class="n">30</td><td class="n">122</td><td class="n">14.1%</td></tr>
+<tr><td class="c">7</td><td>テスト</td><td class="n">45</td><td class="n">38</td><td class="n">83</td><td class="n">9.6%</td></tr>
+<tr><td class="c">8</td><td>リリース・移行・定着支援</td><td class="n">35</td><td class="n">18</td><td class="n">53</td><td class="n">6.1%</td></tr>
+<tr class="sum"><td colspan="2">積上小計</td><td class="n">497</td><td class="n">370</td><td class="n">867</td><td class="n">100%</td></tr>
+<tr><td colspan="2">リスクバッファ（15%）</td><td class="n">75</td><td class="n">55</td><td class="n">130</td><td class="n">—</td></tr>
+<tr class="grand"><td colspan="2">基本スコープ 総工数</td><td class="n">572</td><td class="n">425</td><td class="n">997</td><td class="n">—</td></tr>
+</tbody>
+</table>
+
+<h2 style="break-before:page">5. WBS 詳細（大・中・小項目）</h2>
+<p><small>「小項目」は優先度シートの組み替えに対応できる粒度で分解しています。優先度のご確定後、行単位でフェーズを付け替えます。</small></p>
+
+<h3>大項目 1 — プロジェクト管理・要件定義　123人日</h3>
+<table>
+<thead><tr><th style="width:20%">中項目</th><th>小項目</th><th class="n" style="width:46px">人日</th></tr></thead>
+<tbody>
+<tr class="mid"><td>1.1 立ち上げ</td><td></td><td class="n">11</td></tr>
+<tr><td></td><td>キックオフ・体制構築・開発標準策定</td><td class="n">3</td></tr>
+<tr><td></td><td>開発環境・CI/CDパイプライン構築</td><td class="n">8</td></tr>
+<tr class="mid"><td>1.2 要件定義</td><td></td><td class="n">42</td></tr>
+<tr><td></td><td>業務要件ヒアリング・整理（管理／仲介 両業務フロー）</td><td class="n">12</td></tr>
+<tr><td></td><td>画面仕様確定（63画面状態のレビュー・確定）</td><td class="n">15</td></tr>
+<tr><td></td><td>非機能要件定義（性能・可用性・セキュリティ・監査）</td><td class="n">5</td></tr>
+<tr><td></td><td>外部連携仕様調査・確定（媒体5系統＋GMO Sign＋Obic）</td><td class="n">10</td></tr>
+<tr class="mid"><td>1.3 進行管理</td><td></td><td class="n">70</td></tr>
+<tr><td></td><td>定例・課題管理・進捗報告・変更管理（0.5 FTE × 全期間）</td><td class="n">70</td></tr>
+</tbody>
+</table>
+
+<h3>大項目 2 — 設計　60人日</h3>
+<table>
+<thead><tr><th style="width:20%">中項目</th><th>小項目</th><th class="n" style="width:46px">人日</th></tr></thead>
+<tbody>
+<tr class="mid"><td>2.1 アーキテクチャ</td><td></td><td class="n">38</td></tr>
+<tr><td></td><td>システム構成設計（インフラ・冗長化・監視）</td><td class="n">6</td></tr>
+<tr><td></td><td>DB論理・物理設計（物件／取引先／申込／出稿履歴）</td><td class="n">12</td></tr>
+<tr><td></td><td>API設計（内部API・外部連携I/F）</td><td class="n">14</td></tr>
+<tr><td></td><td>認証・権限設計（RBAC・二段階認証・組織階層）</td><td class="n">6</td></tr>
+<tr class="mid"><td>2.2 UI/UX</td><td></td><td class="n">22</td></tr>
+<tr><td></td><td>デザインシステム整備（トークン・部品カタログ）</td><td class="n">8</td></tr>
+<tr><td></td><td>画面デザイン確定・実装向け仕様落とし込み</td><td class="n">10</td></tr>
+<tr><td></td><td>多言語（i18n）設計・文言体系定義</td><td class="n">4</td></tr>
+</tbody>
+</table>
+
+<h3>大項目 3 — 共通基盤　81人日</h3>
+<table>
+<thead><tr><th style="width:20%">中項目</th><th>小項目</th><th class="c" style="width:44px">画面</th><th class="n" style="width:46px">人日</th></tr></thead>
+<tbody>
+<tr class="mid"><td>3.1 認証・アカウント</td><td></td><td></td><td class="n">21</td></tr>
+<tr><td></td><td>ログイン／二段階認証</td><td class="c">C1 C2</td><td class="n">8</td></tr>
+<tr><td></td><td>アカウント設定</td><td class="c">C3</td><td class="n">5</td></tr>
+<tr><td></td><td>権限管理・ロール制御（管理会社／仲介会社／組織）</td><td class="c">—</td><td class="n">8</td></tr>
+<tr class="mid"><td>3.2 共通UI部品</td><td></td><td></td><td class="n">29</td></tr>
+<tr><td></td><td>共通クローム（役割別サイドバー・トップバー）</td><td class="c">—</td><td class="n">8</td></tr>
+<tr><td></td><td>フォーム・テーブル・モーダル・タブ等 部品群</td><td class="c">—</td><td class="n">12</td></tr>
+<tr><td></td><td>通知センター</td><td class="c">C4</td><td class="n">6</td></tr>
+<tr><td></td><td>エラーページ 3種</td><td class="c">C5</td><td class="n">3</td></tr>
+<tr class="mid"><td>3.3 基盤機能</td><td></td><td></td><td class="n">31</td></tr>
+<tr><td></td><td>多言語（i18n）実装・文言管理</td><td class="c">—</td><td class="n">6</td></tr>
+<tr><td></td><td>監査ログ基盤（高リスク操作の記録・照会）</td><td class="c">—</td><td class="n">7</td></tr>
+<tr><td></td><td>ファイルストレージ・画像処理基盤</td><td class="c">—</td><td class="n">8</td></tr>
+<tr><td></td><td>検索基盤（条件検索・全文検索・地理検索）</td><td class="c">—</td><td class="n">10</td></tr>
+</tbody>
+</table>
+
+<h3>大項目 4 — 管理会社機能　195人日</h3>
+<table>
+<thead><tr><th style="width:20%">中項目</th><th>小項目</th><th class="c" style="width:44px">画面</th><th class="n" style="width:46px">人日</th></tr></thead>
+<tbody>
+<tr class="mid"><td>4.1 ダッシュボード・一覧</td><td></td><td></td><td class="n">16</td></tr>
+<tr><td></td><td>ダッシュボード</td><td class="c">M1</td><td class="n">6</td></tr>
+<tr><td></td><td>物件一覧＋削除／一括削除モーダル</td><td class="c">M2</td><td class="n">10</td></tr>
+<tr class="mid"><td>4.2 物件登録・編集</td><td></td><td></td><td class="n">57</td></tr>
+<tr><td></td><td>物件新規登録ウィザード 3ステップ</td><td class="c">M3</td><td class="n">14</td></tr>
+<tr><td></td><td>概要タブ＋保存／削除／破棄モーダル</td><td class="c">M4</td><td class="n">12</td></tr>
+<tr><td></td><td>建物・部屋情報編集</td><td class="c">M5 M5b</td><td class="n">12</td></tr>
+<tr><td></td><td>取引条件編集（AD上限100%超対応含む）</td><td class="c">M6</td><td class="n">6</td></tr>
+<tr><td></td><td>掲載情報編集（媒体別）</td><td class="c">M7</td><td class="n">7</td></tr>
+<tr><td></td><td>設備編集モーダル</td><td class="c">M10</td><td class="n">6</td></tr>
+<tr class="mid"><td>4.3 メディア管理</td><td></td><td></td><td class="n">22</td></tr>
+<tr><td></td><td>画像管理＋36点スコア自動判定<br/><small>SUUMO／HOME'S の採点表は 8/5 受領済・実装済</small></td><td class="c">M8</td><td class="n">14</td></tr>
+<tr><td></td><td>パノラマ／動画管理</td><td class="c">M9</td><td class="n">8</td></tr>
+<tr class="mid"><td>4.4 出稿管理</td><td></td><td></td><td class="n">19</td></tr>
+<tr><td></td><td>出稿コントロール＋3条件 安全ゲート ★高リスク</td><td class="c">M11</td><td class="n">16</td></tr>
+<tr><td></td><td>出稿停止モーダル</td><td class="c">M11.b</td><td class="n">3</td></tr>
+<tr class="mid"><td>4.5 内見・申込</td><td></td><td></td><td class="n">51</td></tr>
+<tr><td></td><td>内見予約 一覧＋カレンダー（週ビュー）</td><td class="c">M12</td><td class="n">14</td></tr>
+<tr><td></td><td>入居申込 一覧</td><td class="c">M13</td><td class="n">7</td></tr>
+<tr><td></td><td>申込詳細 5ステップ＋アーカイブモーダル<br/><small>ステータス「受付前」追加を含む</small></td><td class="c">M14</td><td class="n">20</td></tr>
+<tr><td></td><td>承認・否認モーダル ★高リスク</td><td class="c">M14a/b</td><td class="n">10</td></tr>
+<tr class="mid"><td>4.6 その他業務機能</td><td></td><td></td><td class="n">30</td></tr>
+<tr><td></td><td>チャット（管理会社側）</td><td class="c">M15</td><td class="n">12</td></tr>
+<tr><td></td><td>CSV出力・帳票</td><td class="c">M16</td><td class="n">8</td></tr>
+<tr><td></td><td>マスタデータ設定</td><td class="c">M17</td><td class="n">10</td></tr>
+</tbody>
+</table>
+
+<h3>大項目 5 — 仲介会社機能（Connect Square）　150人日</h3>
+<table>
+<thead><tr><th style="width:20%">中項目</th><th>小項目</th><th class="c" style="width:44px">画面</th><th class="n" style="width:46px">人日</th></tr></thead>
+<tbody>
+<tr class="mid"><td>5.1 検索・物件閲覧</td><td></td><td></td><td class="n">72</td></tr>
+<tr><td></td><td>ホーム</td><td class="c">B1</td><td class="n">8</td></tr>
+<tr><td></td><td>物件検索（詳細フィルター）</td><td class="c">B2</td><td class="n">10</td></tr>
+<tr><td></td><td>地図検索（地図API連携・クラスタ表示）</td><td class="c">B3</td><td class="n">14</td></tr>
+<tr><td></td><td>検索結果（高密度テーブル・比較・一括操作）</td><td class="c">B4</td><td class="n">14</td></tr>
+<tr><td></td><td>物件詳細（中心ハブ・3タブ構成）</td><td class="c">B5</td><td class="n">14</td></tr>
+<tr><td></td><td>接客モード</td><td class="c">B6</td><td class="n">12</td></tr>
+<tr class="mid"><td>5.2 内見</td><td></td><td></td><td class="n">17</td></tr>
+<tr><td></td><td>内見予約フォーム</td><td class="c">B7</td><td class="n">9</td></tr>
+<tr><td></td><td>My内見＋キャンセルモーダル</td><td class="c">B8</td><td class="n">8</td></tr>
+<tr class="mid"><td>5.3 入居申込</td><td></td><td></td><td class="n">43</td></tr>
+<tr><td></td><td>申込フォーム 5ステップ＋下書き破棄モーダル</td><td class="c">B9</td><td class="n">24</td></tr>
+<tr><td></td><td>申込内容確認・送信</td><td class="c">B10</td><td class="n">7</td></tr>
+<tr><td></td><td>My申込＋取り下げ 3ステップ</td><td class="c">B11</td><td class="n">12</td></tr>
+<tr class="mid"><td>5.4 その他</td><td></td><td></td><td class="n">18</td></tr>
+<tr><td></td><td>チャット（仲介会社側／M15と基盤共用）</td><td class="c">B12</td><td class="n">8</td></tr>
+<tr><td></td><td>初期費用シミュレーター（共有URL生成）</td><td class="c">B13</td><td class="n">10</td></tr>
+</tbody>
+</table>
+
+<h3>大項目 6 — 外部連携　122人日</h3>
+<table>
+<thead><tr><th style="width:20%">中項目</th><th>小項目</th><th class="n" style="width:46px">人日</th></tr></thead>
+<tbody>
+<tr class="mid"><td>6.1 広告媒体出稿</td><td></td><td class="n">74</td></tr>
+<tr><td></td><td>出稿ジョブ基盤（キュー・リトライ・状態同期・エラー通知）</td><td class="n">14</td></tr>
+<tr><td></td><td>SUUMO 連携</td><td class="n">12</td></tr>
+<tr><td></td><td>HOME'S 連携</td><td class="n">12</td></tr>
+<tr><td></td><td>アットホーム 連携</td><td class="n">12</td></tr>
+<tr><td></td><td>レインズ 連携</td><td class="n">12</td></tr>
+<tr><td></td><td>業者間B2B 連携</td><td class="n">7</td></tr>
+<tr><td></td><td><b>ZOOM RENT／ZOOM SELECTION 出稿</b>（自社サイト出稿の仕組みに出稿先として追加）</td><td class="n">5</td></tr>
+<tr class="mid"><td>6.2 業務システム連携</td><td></td><td class="n">48</td></tr>
+<tr><td></td><td>GMO Sign 電子契約（エンベロープ生成・状態受信）<br/><small>※ 契約書フォーム作成・署名機能の追加は付録A-22</small></td><td class="n">14</td></tr>
+<tr><td></td><td>Obic ERP 書き戻し（申込→契約データ）</td><td class="n">16</td></tr>
+<tr><td></td><td>いい生活Square 連携・データ移行I/F</td><td class="n">18</td></tr>
+</tbody>
+</table>
+
+<h3>大項目 7 — テスト　83人日</h3>
+<table>
+<thead><tr><th style="width:20%">中項目</th><th>小項目</th><th class="n" style="width:46px">人日</th></tr></thead>
+<tbody>
+<tr class="mid"><td>7.1 結合テスト</td><td></td><td class="n">25</td></tr>
+<tr><td></td><td>機能横断結合テスト（画面遷移・データ整合）</td><td class="n">25</td></tr>
+<tr class="mid"><td>7.2 システム・受入</td><td></td><td class="n">58</td></tr>
+<tr><td></td><td>業務シナリオテスト（物件登録→出稿→内見→申込→承認）</td><td class="n">20</td></tr>
+<tr><td></td><td>高リスク操作テスト（出稿・承認 各6ケース）</td><td class="n">8</td></tr>
+<tr><td></td><td>多言語表示確認（JP／EN 全画面）</td><td class="n">6</td></tr>
+<tr><td></td><td>性能・セキュリティテスト（脆弱性診断含む）</td><td class="n">12</td></tr>
+<tr><td></td><td>UAT支援（受入テスト立会・不具合対応）</td><td class="n">12</td></tr>
+</tbody>
+</table>
+
+<h3>大項目 8 — リリース・移行・定着支援　53人日</h3>
+<table>
+<thead><tr><th style="width:20%">中項目</th><th>小項目</th><th class="n" style="width:46px">人日</th></tr></thead>
+<tbody>
+<tr class="mid"><td>8.1 データ移行</td><td></td><td class="n">30</td></tr>
+<tr><td></td><td>移行設計・変換ツール作成・名寄せ／クレンジング・リハーサル・本移行<br/><small>対象: 物件マスタ（3,600件以上）／取引先／申込履歴。稼働中の売上システムからの移行のため、名寄せ工数を織り込み済み</small></td><td class="n">30</td></tr>
+<tr class="mid"><td>8.2 リリース</td><td></td><td class="n">13</td></tr>
+<tr><td></td><td>本番環境構築・監視設定</td><td class="n">8</td></tr>
+<tr><td></td><td>リリース作業・立ち会い（2フェーズ分）</td><td class="n">5</td></tr>
+<tr class="mid"><td>8.3 定着支援</td><td></td><td class="n">10</td></tr>
+<tr><td></td><td>操作マニュアル・研修資料作成／初期サポート（ハイパーケア1ヶ月）<br/><small>※ データ移行の名寄せ工数を織り込んだ分、定着支援を統合して計上しています（マニュアル＋サポート 20→10人日）。研修回数・サポート期間のご希望により再計上します</small></td><td class="n">10</td></tr>
+</tbody>
+</table>
+
+<h2 style="break-before:page">6. 開発スケジュール・体制</h2>
+<p>日程は<b>発注月を M0 とした相対月</b>で記載します（着手 M+1）。発注時期のご決定に応じて全体が同月数スライドします。</p>
+
+<table>
+<thead><tr><th style="width:24%">工程</th><th class="c">M+1</th><th class="c">2</th><th class="c">3</th><th class="c">4</th><th class="c">5</th><th class="c">6</th><th class="c">7</th><th class="c">8</th><th class="c">9</th><th class="c">10</th></tr></thead>
+<tbody>
+<tr><td colspan="11" style="background:#F6F8FA;font-weight:700;font-size:10px;padding:3px 7px">Phase 1（優先度 高）</td></tr>
+<tr><td>要件定義・設計</td><td><span class="gbar"></span></td><td><span class="gbar"></span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>共通基盤</td><td></td><td><span class="gbar"></span></td><td><span class="gbar"></span></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>物件登録・編集・画像</td><td></td><td></td><td><span class="gbar"></span></td><td><span class="gbar"></span></td><td><span class="gbar"></span></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>媒体連携・出稿</td><td></td><td></td><td><span class="gbar"></span></td><td><span class="gbar"></span></td><td><span class="gbar"></span></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>移行・テスト・UAT</td><td></td><td></td><td></td><td></td><td><span class="gbar"></span></td><td><span class="gbar"></span></td><td></td><td></td><td></td><td></td></tr>
+<tr><td><b>▼ Phase 1 リリース</b></td><td></td><td></td><td></td><td></td><td></td><td class="c">★</td><td></td><td></td><td></td><td></td></tr>
+<tr><td colspan="11" style="background:#F6F8FA;font-weight:700;font-size:10px;padding:3px 7px">Phase 2（優先度 低）</td></tr>
+<tr><td>Connect Square 検索・閲覧</td><td></td><td></td><td></td><td></td><td></td><td><span class="gbar p2"></span></td><td><span class="gbar p2"></span></td><td></td><td></td><td></td></tr>
+<tr><td>申込フロー（両者）</td><td></td><td></td><td></td><td></td><td></td><td></td><td><span class="gbar p2"></span></td><td><span class="gbar p2"></span></td><td></td><td></td></tr>
+<tr><td>GMO Sign・Obic ERP</td><td></td><td></td><td></td><td></td><td></td><td></td><td><span class="gbar p2"></span></td><td><span class="gbar p2"></span></td><td></td><td></td></tr>
+<tr><td>マスタ設定・CSV・チャット</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><span class="gbar p2"></span></td><td><span class="gbar p2"></span></td><td></td></tr>
+<tr><td>テスト・UAT・検収</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><span class="gbar p2"></span></td><td><span class="gbar p2"></span></td></tr>
+<tr><td><b>▼ Phase 2 リリース・検収</b></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="c">★</td></tr>
+<tr><td colspan="11" style="background:#FDF0D5;font-weight:700;font-size:10px;padding:3px 7px">付録A を組み入れる場合 → M+13〜14 まで延伸（体制据え置き時）</td></tr>
+</tbody>
+</table>
+
+<h3>体制（FTE換算）</h3>
+<p><small>下表は<b>FTE</b>（1.0＝1名フルタイム相当）です。実人数は部分稼働を含め Phase 1 で 7〜8名、Phase 2 で 7〜8名を想定します。</small></p>
+<table>
+<thead><tr><th>ロール</th><th class="c">Phase 1<br/><small>6ヶ月 / 572人日</small></th><th class="c">Phase 2<br/><small>4ヶ月 / 425人日</small></th><th>主担当領域</th></tr></thead>
+<tbody>
+<tr><td>プロジェクトマネージャー</td><td class="c">0.5</td><td class="c">0.5</td><td>進行管理・顧客折衝・変更管理</td></tr>
+<tr><td>アーキテクト／テックリード</td><td class="c">0.6</td><td class="c">0.3</td><td>アーキテクチャ・API設計・技術判断</td></tr>
+<tr><td>バックエンドエンジニア</td><td class="c">1.7</td><td class="c">1.8</td><td>業務ロジック・外部連携・ジョブ基盤</td></tr>
+<tr><td>フロントエンドエンジニア</td><td class="c">1.5</td><td class="c">1.9</td><td>63画面状態の実装・共通部品・多言語</td></tr>
+<tr><td>QAエンジニア</td><td class="c">0.35</td><td class="c">0.6</td><td>テスト設計・実施・高リスク操作検証</td></tr>
+<tr><td>UI/UXデザイナー</td><td class="c">0.15</td><td class="c">0.2</td><td>デザイン微修正・実装レビュー</td></tr>
+<tr class="sum"><td>合計 FTE</td><td class="c">4.8</td><td class="c">5.3</td><td>全期間平均 <b>5.0 FTE</b>（997 ÷ 10ヶ月 ÷ 20日）</td></tr>
+</tbody>
+</table>
+
+<h2>7. 費用（基本スコープ・単価別レンジ）</h2>
+<table>
+<thead><tr><th>人日単価（税別）</th><th class="n">Phase 1<br/><small>572人日</small></th><th class="n">Phase 2<br/><small>425人日</small></th><th class="n">基本スコープ計<br/><small>997人日</small></th></tr></thead>
+<tbody>
+<tr><td>55,000円 <small>（下限）</small></td><td class="n">3,146万円</td><td class="n">2,338万円</td><td class="n">5,484万円</td></tr>
+<tr class="sum"><td>60,000円 <small>（想定）</small></td><td class="n">3,432万円</td><td class="n">2,550万円</td><td class="n">5,982万円</td></tr>
+<tr><td>70,000円 <small>（上限）</small></td><td class="n">4,004万円</td><td class="n">2,975万円</td><td class="n">6,979万円</td></tr>
+</tbody>
+</table>
+<p><small>別途、インフラ・第三者サービス利用料が月額で発生します（クラウド・地図API・電子契約等）。概算 月15〜30万円（本番＋検証環境）。付録Aを実施する場合、eKYC・反社チェック・電話基盤等の従量課金が追加されます。</small></p>
+
+<h2>8. リスクと確定が必要な事項</h2>
+<table>
+<thead><tr><th style="width:24%">項目</th><th>内容と影響</th><th class="c" style="width:52px">影響度</th></tr></thead>
+<tbody>
+<tr><td>媒体API仕様</td><td><b>レインズ・アットホーム</b>の連携仕様が非公開または要協議の場合、調査・折衝で <b>+15〜30人日</b>。<br/><small>SUUMO・HOME'S の採点表／必須項目は 8/5 受領済のため、本リスクの対象外となりました。</small></td><td class="c">高</td></tr>
+<tr><td>Obic ERP 連携方式</td><td>API提供有無で工数が大きく変動。ファイル連携・DB直結の場合 <b>+10〜20人日</b></td><td class="c">高</td></tr>
+<tr><td>Square 並行運用</td><td>お打ち合わせでは並行稼働期間を想定とのことでした。<b>発生する前提</b>で、二重登録防止・同期の追加開発 <b>+15〜30人日</b> をご想定ください（本見積には未計上）</td><td class="c">高</td></tr>
+<tr><td>付録A の優先度未確定</td><td>28項目のフェーズ割当が未確定。優先度シートのご確定まで、Phase 1／2 の内訳は暫定</td><td class="c">高</td></tr>
+<tr><td>AI写真自動判別（付録A-40）</td><td>実物件写真での判別精度検証（PoC）が先行。精度が実用水準に届かない場合、実装見送りまたは方式変更</td><td class="c">中</td></tr>
+<tr><td>自社HP（B2C）の範囲判断</td><td>付録B の4項目は自社HPを開発範囲に含めるかの判断とセット。含める場合 <b>+114〜174人日</b></td><td class="c">中</td></tr>
+<tr><td>発注時期</td><td>発注時期のご協議結果により、全体日程が同月数スライド</td><td class="c">中</td></tr>
+</tbody>
+</table>
+
+<h3>本見積に含まないもの</h3>
+<ul>
+<li><b>自社HP（B2C・エンドユーザー向けサイト）および そのページ編集機能・アクセス分析・駐車場専用ページ</b> — 付録B。開発範囲に含めるかの判断が未確定です</li>
+<li>付録A の28項目（第9章に別掲。優先度確定後に本体へ組み入れ）</li>
+<li>インフラ・第三者サービス利用料（クラウド、地図API、eKYC、反社チェック、電話基盤、GMO Sign 等の月額・従量費用）</li>
+<li>スマートフォンネイティブアプリ（本見積はWebレスポンシブのみ）</li>
+<li>保守運用フェーズの費用（リリース後のハイパーケア1ヶ月を除く）</li>
+<li>JP／EN 以外の言語追加</li>
+<li>いい生活Square との恒久的な並行運用に伴う追加開発（第8章リスク参照）</li>
+</ul>
+
+<h3>スコープ上の補足</h3>
+<div class="callout">
+<p><b>Phase 1 の内見予約について。</b>優先度の暫定割当では、管理会社側の内見予約（M12）が Phase 1、仲介会社側の予約フォーム（B7）が Phase 2 となります。Phase 1 の期間中、内見予約は<b>電話・メールでお受けし管理会社側で登録する運用</b>を想定しています。仲介会社からのセルフ予約は Phase 2 から可能になります。優先度シートで B7 を高に変更いただければ、Phase 1 に移動します。</p>
+</div>
+
+<h2 style="break-before:page">9. 付録A — 8月3日お打ち合わせで確定した追加ご要望</h2>
+<p>2026年8月3日のお打ち合わせで「対応可」とご回答した28項目です。<b>第1〜7章の997人日には含まれていません。</b>優先度のご確定をもって本体スコープへ組み入れます。</p>
+
+<h4>管理画面</h4>
+<table>
+<thead><tr><th class="c" style="width:26px">#</th><th>ご要望・対応方針</th><th class="c" style="width:56px">区分</th><th class="n" style="width:42px">人日</th></tr></thead>
+<tbody>
+<tr><td class="c">1</td><td><b>メール一斉配信</b> — 登録仲介業者へ条件変更・休業連絡を一斉送信。全社／エリア別／取引先別の宛先選択、送信履歴</td><td class="c"><span class="tag new">新規</span></td><td class="n">12</td></tr>
+<tr><td class="c">6</td><td><b>内見数・閲覧数・検索傾向の分析／可視化</b> — 外部分析基盤（OpenSearch 等）へログ集約し付属ダッシュボードで可視化。基幹側は連携部分の開発</td><td class="c"><span class="tag new">新規</span></td><td class="n">16</td></tr>
+<tr><td class="c">8</td><td><b>仲介業者管理＋Web反社チェック連携</b> — 新規画面。登録・審査（反社チェックAPI連携）・登録取り消し</td><td class="c"><span class="tag new">新規</span></td><td class="n">18</td></tr>
+<tr><td class="c">9</td><td><b>電話認証による業者登録</b> — 宅建業免許の登録番号からの発信で本人確認、ID・パスワードをメール送付（Connect Voice と電話基盤共通）</td><td class="c"><span class="tag new">新規</span></td><td class="n">14</td></tr>
+<tr><td class="c">10</td><td><b>会社・店舗単位の登録＋担当者サブアカウント</b> — 設計方針の明記と実装</td><td class="c"><span class="tag ext">拡張</span></td><td class="n">6</td></tr>
+<tr><td class="c">11</td><td><b>立会後の内装状況を OBIC から反映</b> — 物件の現況・内装項目へ自動反映（M4／M5b）</td><td class="c"><span class="tag ext">拡張</span></td><td class="n">8</td></tr>
+<tr><td class="c">12</td><td><b>入力箇所の課別分割＋最終更新者の明確化</b> — 入力画面を課ごとのブロックに分け、ブロック単位で最終更新者を表示</td><td class="c"><span class="tag ext">拡張</span></td><td class="n">8</td></tr>
+<tr><td class="c">14</td><td><b>特定業者のみへの限定公開</b> — 取引先管理と連動した物件単位の限定公開</td><td class="c"><span class="tag new">新規</span></td><td class="n">10</td></tr>
+<tr><td class="c">16</td><td><b>仲介会社ごとの利用可否（有効／停止）</b> — 切替履歴の記録を含む</td><td class="c"><span class="tag ext">拡張</span></td><td class="n">5</td></tr>
+<tr><td class="c">18</td><td><b>保証会社API 審査依頼</b> — 申込詳細から審査依頼、状況表示（依頼済／事前承認／否認）。<b>3社連携</b></td><td class="c"><span class="tag new">新規</span></td><td class="n">22</td></tr>
+<tr><td class="c">20</td><td><b>ネット回線・空室電気への自動送客＋通電管理</b> — 賃料発生日確定を起点に自動連携、電気ON/OFF連動</td><td class="c"><span class="tag new">新規</span></td><td class="n">14</td></tr>
+<tr><td class="c">22</td><td><b>電子契約フォーム作成＋電子署名</b> — 契約書フォーム作成から署名まで自社システム内で完結（既存のGMOサイン連携を拡張）</td><td class="c"><span class="tag new">新規</span></td><td class="n">26</td></tr>
+<tr><td class="c">24</td><td><b>サブステータス追加</b> — 申込一覧の絞り込み・申込詳細表示に反映</td><td class="c"><span class="tag ext">拡張</span></td><td class="n">8</td></tr>
+<tr><td class="c">26</td><td><b>eKYC（申込時 本人確認）</b> — 申込フローにeKYCステップを追加、結果を申込フォーム／申込詳細に表示（B9⑤・M14②）</td><td class="c"><span class="tag new">新規</span></td><td class="n">16</td></tr>
+<tr><td class="c">28</td><td><b>親子連携（LENZ DX ⇔ FINDERS）＋店舗切替</b> — 物件データ・写真の自動コピー（親の募集条件は子側変更不可）、再ログイン不要の組織／店舗切替</td><td class="c"><span class="tag new">新規</span></td><td class="n">20</td></tr>
+<tr><td class="c">30</td><td><b>自由タグ</b> — 既存シリーズチップを自由作成タグへ拡張。検索・CSV出力・データ取り込みで利用</td><td class="c"><span class="tag ext">拡張</span></td><td class="n">8</td></tr>
+<tr><td class="c">32</td><td><b>申込フォームの作成・発行</b> — 管理画面から物件ごとにフォームを作成し、入居希望者・業者へURLをメール送付</td><td class="c"><span class="tag new">新規</span></td><td class="n">12</td></tr>
+<tr><td class="c">34</td><td><b>Connect Voice（電話自動応答）</b> — 電話での募集物件確認を自動化、入力文字の読み上げ。<small>※後半フェーズ想定・画面なし</small></td><td class="c"><span class="tag new">新規</span></td><td class="n">24</td></tr>
+<tr><td class="c">36</td><td><b>ポータル別 必須項目の色分け＋保存時アラート</b> — 赤（未入力）／青（入力済）表示、保存時に未入力項目を警告（M7／M4／M5／M5b／M8／M17）</td><td class="c"><span class="tag ext">拡張</span></td><td class="n">12</td></tr>
+<tr><td class="c">38</td><td><b>サイト別 写真枚数上限・必須カテゴリの設定</b> — 媒体の仕様変更に設定画面で追従</td><td class="c"><span class="tag ext">拡張</span></td><td class="n">6</td></tr>
+<tr><td class="c">40</td><td><b>写真のAI自動判別</b> — 一括アップロードでLDK・洋室・トイレ・浴室等を自動振り分け（手動修正可）。<small>PoC 8人日＋実装 16人日</small></td><td class="c"><span class="tag new">新規</span></td><td class="n">24</td></tr>
+<tr><td class="c">42</td><td><b>SUUMO基準スコアの追加</b> — 既存36点方式に加え、写真と入力項目の両方を採点</td><td class="c"><span class="tag ext">拡張</span></td><td class="n">10</td></tr>
+<tr><td class="c">44</td><td><b>図面の Excel 出力</b> — 募集していない物件でも図面作成可</td><td class="c"><span class="tag ext">拡張</span></td><td class="n">6</td></tr>
+<tr><td class="c">46</td><td><b>駐車場を1台ごとに登録・募集</b> — 部屋と同様の単位で登録し自社HPに掲載</td><td class="c"><span class="tag new">新規</span></td><td class="n">14</td></tr>
+<tr class="sum"><td colspan="3">管理画面 小計</td><td class="n">319</td></tr>
+</tbody>
+</table>
+
+<h4>仲介画面</h4>
+<table>
+<thead><tr><th class="c" style="width:26px">#</th><th>ご要望・対応方針</th><th class="c" style="width:56px">区分</th><th class="n" style="width:42px">人日</th></tr></thead>
+<tbody>
+<tr><td class="c">49</td><td><b>募集項目（検索条件）の設定</b> — 不足項目の追加、検索項目セットを管理画面から設定</td><td class="c"><span class="tag ext">拡張</span></td><td class="n">5</td></tr>
+<tr><td class="c">51</td><td><b>新築の棟ページ</b> — 管理側で棟単位の図面・賃料表を添付し、棟ページとして全部屋をまとめて掲載</td><td class="c"><span class="tag new">新規</span></td><td class="n">16</td></tr>
+<tr><td class="c">53</td><td><b>募集図面の自動DL＋帯情報の選択</b> — 出力時に元付会社／自社を選択</td><td class="c"><span class="tag ext">拡張</span></td><td class="n">6</td></tr>
+<tr><td class="c">56</td><td><b>内見枠の重複制御＋枠数設定＋スマートロック連携</b> — 同一時間枠の重複防止、新築は棟ごとに2〜3件まで管理側で調整、ライナフ／エナスピレーション連携解錠（M12／B7／B8）</td><td class="c"><span class="tag new">新規</span></td><td class="n">18</td></tr>
+<tr class="sum"><td colspan="3">仲介画面 小計</td><td class="n">45</td></tr>
+</tbody>
+</table>
+
+<h4>自社HP（B2B側のみ）</h4>
+<table>
+<thead><tr><th class="c" style="width:26px">#</th><th>ご要望・対応方針</th><th class="c" style="width:56px">区分</th><th class="n" style="width:42px">人日</th></tr></thead>
+<tbody>
+<tr><td class="c">61</td><td><b>業者向けポータル「Connect Square」</b> — 既に基本スコープ（大項目5 / B1〜B13）に含まれています</td><td class="c"><span class="tag ext">計上済</span></td><td class="n">0</td></tr>
+<tr><td class="c">69</td><td><b>ZOOM RENT／ZOOM SELECTION 出稿</b> — 既に基本スコープ（大項目6.1）に含まれています</td><td class="c"><span class="tag ext">計上済</span></td><td class="n">0</td></tr>
+<tr><td class="c">62</td><td><b>新築の別ページ</b> — B2B側は #51 の棟ページで対応。B2C側は付録B の判断とセット</td><td class="c"><span class="tag ext">#51</span></td><td class="n">0</td></tr>
+<tr class="sum"><td colspan="3">自社HP（B2B側）小計</td><td class="n">0</td></tr>
+</tbody>
+</table>
+
+<table>
+<thead><tr><th>付録A 合計</th><th class="n" style="width:80px">人日</th><th class="n" style="width:100px">概算費用</th></tr></thead>
+<tbody>
+<tr><td>積上小計（管理319＋仲介45）</td><td class="n">364</td><td class="n">約2,184万円</td></tr>
+<tr><td>リスクバッファ（15%）</td><td class="n">55</td><td class="n">約330万円</td></tr>
+<tr class="grand"><td>付録A 総工数</td><td class="n">419</td><td class="n">約2,514万円</td></tr>
+</tbody>
+</table>
+
+<div class="callout">
+<p><b>付録A を実施する場合の全体像。</b>基本997人日＋付録A 419人日＝<b>1,416人日（約8,500万円）</b>。体制を据え置く場合、全体期間は <b>M+13〜14</b> まで延伸します。期間を M+10 に維持する場合は平均 <b>7.1 FTE</b>（＋2.1 FTE）への増員が必要です。</p>
+<p>各項目には要件の詳細確認事項が残っています（反社チェックのサービス選定、保証会社のAPI提供状況、eKYCの厳格度、親子間の変更不可項目の範囲、課の一覧と担当項目、サブステータスの具体項目、SUUMO採点ルール詳細 等）。ご確定いただいた項目から順に確定見積へ移行します。</p>
+</div>
+
+<h2>10. 付録B — 範囲判断が必要なご要望（自社HP／B2C）</h2>
+<p>下記は「自社HP（エンドユーザー向け）を開発範囲に含めるか」のご判断とセットの項目です。<b>基本スコープにも付録Aにも含まれていません。</b></p>
+<table>
+<thead><tr><th class="c" style="width:26px">#</th><th>ご要望</th><th class="n" style="width:78px">人日（参考）</th></tr></thead>
+<tbody>
+<tr><td class="c">57</td><td><b>自社HP TOP＋ページ編集機能</b> — 現B2C・HPの置き換え。パワーポイントのような操作で自部署内でページ生成、選択項目（新築・ペット可等）の作成</td><td class="n">80〜120</td></tr>
+<tr><td class="c">62</td><td>新築など別ページの作成（B2C側）</td><td class="n">12〜18</td></tr>
+<tr><td class="c">64</td><td>PV数・流入元などのアクセス分析（埋め込み型解析ツールでの提供を想定）</td><td class="n">8〜14</td></tr>
+<tr><td class="c">66</td><td>駐車場専用ページ（付録A-46「駐車場の1台ごと登録」とセット）</td><td class="n">14〜22</td></tr>
+<tr class="grand"><td colspan="2">付録B 参考レンジ</td><td class="n">114〜174</td></tr>
+</tbody>
+</table>
+
+<h2>11. 次のステップ</h2>
+<p>確定見積へ進むために、以下のご確定をお願いいたします。</p>
+<table>
+<thead><tr><th class="c" style="width:26px">#</th><th>ご確定いただきたい事項</th><th class="c" style="width:80px">影響</th></tr></thead>
+<tbody>
+<tr><td class="c">1</td><td><b>優先度シートのご確定</b>（基本38画面＋付録A 28項目 の 高／低 判定）→ フェーズ割当を確定します</td><td class="c">フェーズ<br/>構成</td></tr>
+<tr><td class="c">2</td><td><b>付録A のうち実施する項目のご決定</b>（全部／一部）</td><td class="c">±419人日</td></tr>
+<tr><td class="c">3</td><td><b>自社HP（B2C）を範囲に含めるかのご判断</b>（付録B）</td><td class="c">+114〜174</td></tr>
+<tr><td class="c">4</td><td>レインズ・アットホームの連携仕様・提供資料</td><td class="c">+15〜30</td></tr>
+<tr><td class="c">5</td><td>Obic ERP の連携方式（API／ファイル／DB直結）</td><td class="c">+10〜20</td></tr>
+<tr><td class="c">6</td><td>Square 並行運用期間の有無・期間</td><td class="c">+15〜30</td></tr>
+<tr><td class="c">7</td><td>データ移行の対象件数・品質（物件・取引先・申込履歴）</td><td class="c">移行工数</td></tr>
+<tr><td class="c">8</td><td>発注時期</td><td class="c">全体日程</td></tr>
+</tbody>
+</table>
+<p>上記 1〜3 のご確定後、約2週間で確定見積を提出いたします。</p>
+
+<div class="foot">
+LENZ Connect（tp-goodlife）概算見積書・開発計画 v2.0 ／ 2026年8月21日作成<br/>
+本見積は概算（ROM）であり、精度は −20%〜+40% を想定しています。記載の工数・費用・期間は前提条件の変更により変動します。<br/>
+対象: 38画面／63画面状態（画面仕様書と一致）＋ 付録A 28項目（2026年8月3日お打ち合わせ確定分）。
+</div>
+
+</doc-page>
+<script src="doc-page.js"></script>
+</body>
+</html>

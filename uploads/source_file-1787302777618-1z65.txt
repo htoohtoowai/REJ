@@ -1,0 +1,21 @@
+I got these feedbacks could you please check these?
+
+:red_circle: Blockers — fix before the customer sees it
+
+The 46 confirmed requests are almost entirely absent — and the document never says so.
+The 8/3 meeting confirmed 対応可/実装可 on, among others: M18 申込フォーム発行 · M19 一斉配信 · M21 仲介業者管理（反社チェック＋電話認証＋業者ID）· 保証会社API（3社確定）· eKYC · M-15 親子連携＋店舗切替 · B-2 新築棟ページ · H-5 駐車場ページ · スマートロック · H-1 B2C「箱」. None appear in the WBS (GMO Sign 14人日 partially covers 電子契約; 取引先管理 appears only as a risk). Toshin will read 5,982万 as the price for what they asked for — it isn't. Ballpark for the missing confirmed items: +250〜450人日, i.e. the real total conversation is closer to 7,500万〜8,500万. Fix: either a bold scope statement ("本見積は基本38画面のみ。8/3確定の追加47項目は優先度確定後に別紙") or an appendix pricing them.
+The phasing contradicts the agreed process. 8/3 agreed: 優先度高＝フェーズ1、低＝フェーズ2 — split by the customer's list. This document phases by role (管理→仲介). And our Monday pack has Nakajima-san marking up the 47-item priority sheet live. If both go out, we've told the customer two different phasing stories in the same week. These must merge into one narrative before Monday.
+Staffing math fails a check the customer will run. 997人日 ÷ 10ヶ月 ÷ 20日 = 5.0 FTE average — the KPI box says 平均8名. Phase 1: 572人日 over 6 months = 4.8 FTE — the 体制表 says 合計10.0名. If those are headcount at partial allocation, say so; as printed it reads as a 2× inflation.
+"67実装単位" matches nothing we have. Canonical: 38 screens / 63 renderable states (both verified in the repo). No enumeration in the document backs 67, and the premise 「全67画面のモックアップ確定済み」 is only true for 63. Ask the author for the 内訳 or align to 38/63.
+Two-phase vs three-phase. The exec summary says 2フェーズ分割 and its Phase 2 row (425人日/2,550万) silently absorbs Phase 3 (33人日/198万), while §5–§7 show three phases. Cosmetic, but it's the first table the customer reads.
+
+
+:large_yellow_circle: Worth fixing
+
+「REIBI基準」in the risk table — that term exists nowhere in our repo; likely a hallucinated name. And that risk ishalf-resolved: the SUUMO/HOME'S scoring table arrived 8/5 (AI-2) and is already implemented on M8. The row should shrink to レインズ/アットホーム only.
+Slice logic: M12 内見予約 is MVP, but B7 (broker booking form) is P2 — Phase 1 ships a booking calendar with no booking source. Defensible (phone bookings), but state it.
+並行運用: the exclusions rule out long-term Square parallel operation, while the meeting explicitly assumed 並行稼働期間. At least the risk row (+15〜30人日) should be presented aslikely, not hypothetical.
+Start 2026/09assumes an order within ~2 weeks — the meeting minuted 発注時期は根本さん協議・来期にかかる見込み. Add "着手は発注月に応じて後ろ倒し".
+B2C and JP/EN-only— B2C is genuinely out, but the 含まないもの list doesn't name it; H-1 was left as a pending scope decision, so name it explicitly.
+ZOOM RENT/SELECTION 連携 (H-6)— confirmed and already designed as publish targets; not visible as a WBS line (the 「業者間B2B／いい生活ウェブサイト連携 10人日」 row is ambiguous).
+Data migration at 20人日 for a live revenue system (~3,600+ listings visible in Square) is thin even for ROM; the +10〜25 risk should probably be baked in.

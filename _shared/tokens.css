@@ -1,0 +1,24 @@
+/* LENZ Connect — Design Tokens (monochrome brand) */
+:root{
+  --ink:#0F172A; --ink-2:#1F2937; --ink-3:#475569; --mute:#94A3B8; --faint:#CBD5E1;
+  --line:#E5E7EB; --line-2:#CBD5E1; --page:#F7F8FA; --card:#FFFFFF; --subtle:#F1F5F9; --hover:#F8FAFC;
+  --accent:#F59E0B; --accent-2:#D97706;
+  --ok:#16A34A; --ok-50:#DCFCE7; --ok-700:#15803D;
+  --warn:#F59E0B; --warn-50:#FEF3C7; --warn-700:#92400E;
+  --danger:#DC2626; --danger-50:#FEE2E2; --danger-700:#991B1B;
+  --info-tint:#F1F5F9;
+}
+html,body{background:var(--page);color:var(--ink);font-family:"Noto Sans JP","Inter",-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;-webkit-font-smoothing:antialiased;}
+.tabnum{font-variant-numeric:tabular-nums;}
+.hl{font-feature-settings:"palt";}
+.mono{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;}
+.no-scrollbar::-webkit-scrollbar{display:none;}
+.no-scrollbar{scrollbar-width:none;}
+/* hairline */
+.hair{border-color:var(--line)}
+/* fancy ¥ */
+.yen::before{content:"¥";font-weight:400;margin-right:1px;opacity:.6;}
+/* dot prefix */
+.dot{width:6px;height:6px;border-radius:999px;display:inline-block;}
+/* scroll hidden */
+body{margin:0}

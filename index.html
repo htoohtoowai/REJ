@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1280"/>
+<title>LENZ Connect — Screen Library</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="_shared/tokens.css"/>
+<style>
+  body{font-family:"Noto Sans JP","Inter",-apple-system,sans-serif;background:#F7F8FA;color:#0F172A;}
+  .hl{font-feature-settings:"palt"}
+  .grid-screens{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+  .card{background:#fff;border:1px solid #E5E7EB;border-radius:10px;overflow:hidden;transition:transform .15s, box-shadow .15s}
+  .card:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(15,23,42,.08)}
+  .thumb{aspect-ratio:16/10;background:linear-gradient(135deg,#0F172A 0%,#1F2937 100%);position:relative;overflow:hidden}
+  .thumb .glow{position:absolute;inset:auto -20% -50% -20%;height:80%;background:radial-gradient(closest-side,#F59E0B 0%,transparent 70%);opacity:.25;filter:blur(20px)}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:600}
+  .pill.mvp{background:#FEF3C7;color:#92400E}
+  .pill.p2{background:#F1F5F9;color:#475569}
+  .pill.role-m{background:#0F172A;color:#fff}
+  .pill.role-b{background:#F59E0B;color:#0F172A}
+  .pill.role-c{background:#1F2937;color:#fff}
+  .lang-tabs{display:inline-flex;border:1px solid #E5E7EB;border-radius:8px;overflow:hidden;background:#fff}
+  .lang-tabs button{padding:6px 14px;font-size:12px;font-weight:600;background:transparent;border:0;color:#64748B;cursor:pointer}
+  .lang-tabs button.active{background:#0F172A;color:#fff}
+  .num{font-family:"JetBrains Mono",monospace;font-size:10px;color:#94A3B8;letter-spacing:.05em}
+  .group-title{font-size:12px;font-weight:700;color:#0F172A;letter-spacing:.16em;text-transform:uppercase}
+  .group-title .meta{font-weight:400;color:#94A3B8;margin-left:8px;letter-spacing:0;text-transform:none}
+  a{color:inherit;text-decoration:none}
+  .hero{background:#0F172A;color:#fff;border-radius:14px;padding:42px 48px;position:relative;overflow:hidden}
+  .hero .skyline{position:absolute;right:-40px;bottom:-20px;width:60%;opacity:.18}
+</style>
+</head>
+<body>
+
+<div class="max-w-[1280px] mx-auto px-8 py-10">
+
+  <header class="flex items-center justify-between mb-10">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-lg bg-[#0F172A] text-white flex items-center justify-center font-bold">L</div>
+      <div>
+        <div class="text-[16px] font-semibold">LENZ Connect</div>
+        <div class="text-[11px] text-[#94A3B8] tracking-wider uppercase">Screen Library · 38 screens × 2 languages</div>
+      </div>
+    </div>
+    <div class="lang-tabs" id="lang-tabs">
+      <button class="active" data-lang="jp">日本語</button>
+      <button data-lang="en">English</button>
+    </div>
+  </header>
+
+  <section class="hero mb-12">
+    <svg class="skyline" viewBox="0 0 600 200" preserveAspectRatio="none">
+      <g stroke="#F59E0B" stroke-width="0.8" fill="none">
+        <rect x="0" y="100" width="40" height="100"/>
+        <rect x="50" y="60" width="30" height="140"/>
+        <rect x="90" y="80" width="60" height="120"/>
+        <rect x="160" y="40" width="40" height="160"/>
+        <rect x="210" y="100" width="50" height="100"/>
+        <rect x="270" y="20" width="30" height="180"/>
+        <rect x="310" y="70" width="80" height="130"/>
+        <rect x="400" y="50" width="40" height="150"/>
+        <rect x="450" y="100" width="60" height="100"/>
+        <rect x="520" y="30" width="40" height="170"/>
+      </g>
+    </svg>
+    <div class="text-[11px] tracking-[0.2em] uppercase text-[#F59E0B] font-semibold mb-3">The Map of the System</div>
+    <h1 class="text-[40px] font-semibold leading-tight max-w-[720px] hl" id="hero-title">
+      物件情報を一元管理。<br/>出稿の手間を、価値ある時間に。
+    </h1>
+    <div class="text-[14px] opacity-70 mt-4 max-w-[640px]" id="hero-sub">
+      管理会社・仲介会社・物件オーナーをひとつのワークスペースで結ぶ。38 画面、19 のフロー、すべての状態を可視化。
+    </div>
+    <div class="mt-6 flex gap-3 flex-wrap">
+      <a href="#management" class="px-4 py-2 bg-[#F59E0B] text-[#0F172A] rounded-md text-[13px] font-semibold">管理会社の画面 →</a>
+      <a href="#broker" class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-md text-[13px] font-semibold">仲介会社の画面 →</a>
+      <a href="#common" class="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-md text-[13px] font-semibold">共通画面 →</a>
+    </div>
+  </section>
+
+  <div id="groups"></div>
+
+  <footer class="mt-16 pt-8 border-t border-[#E5E7EB] text-[11px] text-[#94A3B8] flex justify-between">
+    <span>LENZ Connect · v1.2.4 · 2026/05/26</span>
+    <span>© LENZ DX Co., Ltd.</span>
+  </footer>
+</div>
+
+<script>
+// Screen registry
+const SCREENS = {
+  common: {
+    label_jp: "共通画面 (Common)", label_en: "Common Screens",
+    items: [
+      ["C1", "01-login",             "ログイン",            "Login",                "MVP"],
+      ["C2", "02-mfa",               "MFA 認証",            "MFA Verification",     "MVP"],
+      ["C3", "03-account-settings",  "アカウント設定",      "Account Settings",     "MVP"],
+      ["C4", "04-notifications",     "通知センター",        "Notification Center",  "P2"],
+      ["C5.1","05-error-404",          "404 ページが見つかりません",  "404 Not Found",        "MVP"],
+      ["C5.2","05-error-500",          "500 サーバーエラー",         "500 Server Error",     "MVP"],
+      ["C5.3","05-error-403",          "403 アクセス権限なし",       "403 Access Denied",    "MVP"],
+    ],
+    role: "c"
+  },
+  management: {
+    label_jp: "管理会社 (Management Co.)", label_en: "Management Company",
+    items: [
+      ["M1",  "01-dashboard",                 "ダッシュボード",                  "Dashboard",                       "MVP"],
+      ["M2",  "02-property-list",             "物件一覧",                        "Property List",                   "MVP"],
+      ["M2.a","02-property-list-delete-modal",      "物件削除モーダル (1件)",     "Delete Property Modal (single)",  "MVP"],
+      ["M2.b","02-property-list-bulk-delete-modal", "一括削除モーダル",            "Bulk Delete Modal",                "MVP"],
+      ["M3.1","03-property-create-step1-basics",  "物件新規 — 基本情報",         "New Property — Basics",           "MVP"],
+      ["M3.2","03-property-create-step2-address", "物件新規 — 住所・交通",       "New Property — Address",          "MVP"],
+      ["M3.3","03-property-create-step3-confirm", "物件新規 — 確認・登録",       "New Property — Confirm",          "MVP"],
+      ["M4",  "04-property-edit-overview",    "物件編集 – 概要",                 "Edit Property – Overview",        "MVP"],
+      ["M4.a","04-property-edit-save-modal",   "編集 – 変更を保存モーダル",       "Edit – Save Modal",               "MVP"],
+      ["M4.b","04-property-edit-delete-modal", "編集 – 物件削除モーダル",         "Edit – Delete Modal",             "MVP"],
+      ["M4.c","04-property-edit-discard-modal","編集 – 変更破棄モーダル",         "Edit – Discard Modal",            "MVP"],
+      ["M5",  "05-property-edit-building",    "物件編集 – 建物",                 "Edit Property – Building",        "MVP"],
+      ["M5b", "05b-property-edit-room",       "物件編集 – 部屋",                 "Edit Property – Room",            "MVP"],
+      ["M6",  "06-property-edit-transaction", "物件編集 – 取引",                 "Edit Property – Transaction",     "MVP"],
+      ["M7",  "07-property-edit-listing-info","物件編集 – 掲載情報",             "Edit Property – Listing Info",    "MVP"],
+      ["M8",  "08-property-edit-images",      "物件編集 – 画像 (36ポイント)",    "Edit Property – Images",          "MVP"],
+      ["M9",  "09-property-edit-panorama",    "物件編集 – パノラマ / 動画",     "Edit Property – Panorama",        "P2"],
+      ["M10", "10-equipment-modal",           "設備編集モーダル",                "Equipment Modal",                 "MVP"],
+      ["M11", "11-publish-controls",          "出稿コントロール",                "Publish Controls",                "MVP"],
+      ["M11.b","11-publish-unpublish-modal",  "出稿停止モーダル",                "Unpublish Modal",                 "MVP"],
+      ["M12", "12-viewing-list-calendar",     "内見予約 一覧+カレンダー",        "Viewing List + Calendar",         "MVP"],
+      ["M13", "13-application-list",          "入居申込 一覧",                   "Application List",                "P2"],
+      ["M14.1","14-application-detail-step1-received","入居申込 — 受信",         "Application — Received",          "P2"],
+      ["M14.2","14-application-detail-step2-doccheck","入居申込 — 書類確認",     "Application — Doc check",         "P2"],
+      ["M14.3","14-application-detail-step3-review",  "入居申込 — 社内審査",     "Application — Internal review",   "P2"],
+      ["M14.4","14-application-detail-step4-owner",   "入居申込 — オーナー判定", "Application — Owner review",      "P2"],
+      ["M14.5","14-application-detail-step5-approved","入居申込 — 承認・契約",   "Application — Approved",          "P2"],
+      ["M14.c","14-application-detail-archive-modal","申込 アーカイブモーダル",   "Archive Application Modal",       "P2"],
+      ["M14a","14a-application-approve-modal","入居申込 承認モーダル",           "Approve Modal",                   "P2"],
+      ["M14b","14b-application-reject-modal", "入居申込 否認モーダル",           "Reject Modal",                    "P2"],
+      ["M15", "15-chat",                      "チャット",                        "Chat",                            "P2"],
+      ["M16", "16-csv-export",                "CSV エクスポート",                "CSV Export",                      "P2"],
+      ["M17", "17-master-data",               "マスタデータ設定",                "Master Data",                     "P3"],
+    ],
+    role: "m"
+  },
+  broker: {
+    label_jp: "仲介会社 (Broker)", label_en: "Broker Company",
+    items: [
+      ["B1",  "01-home",                "ホーム",                           "Home",                            "P2"],
+      ["B2",  "02-search-filter",       "物件検索 (絞り込み)",              "Search – Filters",                "P2"],
+      ["B3",  "03-search-map",          "物件検索 (地図)",                  "Search – Map",                    "P2"],
+      ["B4",  "04-search-results",      "検索結果",                         "Search Results",                  "P2"],
+      ["B5",  "05-property-detail",     "物件詳細",                         "Property Detail",                 "P2"],
+      ["B6",  "06-customer-mode",       "接客モード",                       "Customer-Service Mode",           "P2"],
+      ["B7",  "07-viewing-booking",     "内見予約 (申込フォーム)",          "Viewing Booking",                 "P2"],
+      ["B8",  "08-my-viewings",         "My 内見",                           "My Viewings",                     "P2"],
+      ["B8.a","08-my-viewings-cancel-modal", "内見キャンセルモーダル",         "Cancel Viewing Modal",            "P2"],
+      ["B9.1","09-application-form-step1-applicant", "入居申込 — ①貴社情報",   "Apply — Your firm",         "P2"],
+      ["B9.2","09-application-form-step2-work",      "入居申込 — ②申込種別",   "Apply — Application type",  "P2"],
+      ["B9.3","09-application-form-step3-emergency", "入居申込 — ③契約情報",   "Apply — Contract info",     "P2"],
+      ["B9.4","09-application-form-step4-guarantor", "入居申込 — ④保証",       "Apply — Guarantor",         "P2"],
+      ["B9.5","09-application-form-step5-tenants",   "入居申込 — ⑤申込者情報", "Apply — Applicant info",    "P2"],
+      ["B9.6","09-application-form-step6-documents", "入居申込 — (廃止/Step5へ統合)", "Apply — (Deprecated)", "P2"],
+      ["B9.d","09-application-form-discard-modal",   "申込 下書き破棄モーダル",  "Discard Draft Modal",             "P2"],
+      ["B10", "10-application-confirm", "入居申込 確認 / 送信",             "Application Confirm",             "P2"],
+      ["B11", "11-my-applications",     "My 申込",                          "My Applications",                 "P2"],
+      ["B11.a.1","11-my-applications-withdraw-step1-reason",  "取り下げ — 理由",     "Withdraw — Reason",       "P2"],
+      ["B11.a.2","11-my-applications-withdraw-step2-details", "取り下げ — 詳細",     "Withdraw — Details",      "P2"],
+      ["B11.a.3","11-my-applications-withdraw-step3-confirm", "取り下げ — 最終確認", "Withdraw — Confirm",      "P2"],
+      ["B12", "12-chat",                "チャット (仲介側)",                "Chat (Broker side)",              "P2"],
+      ["B13", "13-cost-calculator",     "初期費用シミュレーター",           "Initial Cost Calculator",         "P2"],
+    ],
+    role: "b"
+  }
+};
+
+const heroJP = { title: "物件情報を一元管理。<br/>出稿の手間を、価値ある時間に。", sub: "管理会社・仲介会社・物件オーナーをひとつのワークスペースで結ぶ。38 画面、19 のフロー、すべての状態を可視化。" };
+const heroEN = { title: "One workspace for every listing.<br/>Reclaim your hours from the publishing grind.", sub: "Management companies, brokers and owners meet on a single platform. 38 screens, 19 flows, every state mapped." };
+
+let lang = "jp";
+
+function thumb(id, role, idx) {
+  // Stylized monogram + role color
+  const accent = role === "m" ? "#F59E0B" : role === "b" ? "#FBBF24" : "#94A3B8";
+  return `
+    <div class="thumb">
+      <div class="glow" style="background:radial-gradient(closest-side,${accent} 0%,transparent 70%)"></div>
+      <svg viewBox="0 0 260 162" class="absolute inset-0 w-full h-full">
+        <g fill="none" stroke="${accent}" stroke-width="0.6" opacity="0.4">
+          ${Array.from({length:14}).map((_,i)=>`<line x1="0" y1="${i*12}" x2="260" y2="${i*12}"/>`).join("")}
+          ${Array.from({length:22}).map((_,i)=>`<line x1="${i*12}" y1="0" x2="${i*12}" y2="162"/>`).join("")}
+        </g>
+        <g transform="translate(20,28)">
+          <rect width="60" height="8" fill="rgba(255,255,255,0.12)" rx="2"/>
+          <rect y="14" width="40" height="6" fill="rgba(255,255,255,0.08)" rx="2"/>
+        </g>
+        <g transform="translate(20,${60 + (idx%3)*10})">
+          ${Array.from({length:3}).map((_,i)=>`<rect x="${i*72}" y="0" width="64" height="${52 - (i%2)*8}" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.18)" rx="3"/>`).join("")}
+        </g>
+        <text x="232" y="142" text-anchor="end" fill="${accent}" font-size="38" font-weight="700" opacity="0.85" font-family="Inter">${id}</text>
+      </svg>
+    </div>
+  `;
+}
+
+function render() {
+  document.getElementById("hero-title").innerHTML = (lang === "jp" ? heroJP : heroEN).title;
+  document.getElementById("hero-sub").innerHTML = (lang === "jp" ? heroJP : heroEN).sub;
+  const root = document.getElementById("groups");
+  root.innerHTML = "";
+  for (const key of ["management","broker","common"]) {
+    const g = SCREENS[key];
+    const sec = document.createElement("section");
+    sec.id = key;
+    sec.className = "mb-12";
+    const head = `
+      <div class="flex items-baseline justify-between mb-5 pb-3 border-b border-[#E5E7EB]">
+        <div class="group-title">${lang==="jp"?g.label_jp:g.label_en}<span class="meta">${g.items.length} ${lang==="jp"?"画面":"screens"}</span></div>
+        <div class="text-[11px] text-[#94A3B8] uppercase tracking-wider">${lang==="jp"?"プレフィックス":"Prefix"}: ${g.items[0][0].replace(/[0-9a-z]/g,"")}</div>
+      </div>
+      <div class="grid-screens"></div>
+    `;
+    sec.innerHTML = head;
+    const grid = sec.querySelector(".grid-screens");
+    g.items.forEach(([id, slug, jpName, enName, prio], i) => {
+      const role = g.role;
+      const roleLabel = role === "m" ? "M" : role === "b" ? "B" : "C";
+      const card = document.createElement("a");
+      card.className = "card block";
+      card.href = `${lang}/${key}/${slug}.html`;
+      card.innerHTML = `
+        ${thumb(id, role, i)}
+        <div class="p-3.5">
+          <div class="flex items-center justify-between mb-1">
+            <span class="num">${id}</span>
+            <div class="flex gap-1">
+              <span class="pill ${prio==="MVP"?"mvp":"p2"}">${prio}</span>
+              <span class="pill role-${role}">${roleLabel}</span>
+            </div>
+          </div>
+          <div class="text-[13px] font-semibold text-[#0F172A] leading-snug">${lang==="jp"?jpName:enName}</div>
+          <div class="text-[11px] text-[#94A3B8] mt-1 truncate">${lang==="jp"?enName:jpName}</div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+    root.appendChild(sec);
+  }
+}
+
+document.querySelectorAll("#lang-tabs button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#lang-tabs button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    lang = btn.dataset.lang;
+    render();
+  });
+});
+render();
+</script>
+</body>
+</html>

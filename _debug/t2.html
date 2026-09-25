@@ -1,0 +1,24 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"/><title>t2</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="../_shared/tokens.css"/>
+<script>window.LANG="jp";</script>
+<style>section{background:#fff}deck-stage:not(:defined){visibility:hidden}.spec{position:absolute;inset:0;display:flex}.frame{width:1100px;height:688px;overflow:hidden;position:relative;border:1px solid #ddd}.fit{position:absolute;top:0;left:0;width:1440px;height:900px;transform:scale(.76389);transform-origin:top left;overflow:hidden}.fit .min-h-screen{min-height:900px!important}.fit .h-screen{height:900px!important}.fit .fixed{position:absolute!important}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_shared/strings.jsx"></script>
+<script type="text/babel" src="../_shared/chrome.jsx"></script>
+<script type="text/babel" src="../_shared/ui.jsx"></script>
+<script type="text/babel" src="../_shared/screens/common.jsx"></script>
+<script type="text/babel" src="../_shared/screens/management-1.jsx"></script>
+</head><body>
+<deck-stage id="stage" width="1920" height="1080" no-rail>
+<section data-label="A"><div class="spec"><div class="frame"><div class="fit" id="a"></div></div></div></section>
+<section data-label="B"><div class="spec"><div class="frame"><div class="fit" id="b"></div></div></div></section>
+</deck-stage>
+<script type="text/babel" data-presets="env,react">
+ReactDOM.createRoot(document.getElementById('a')).render(React.createElement(window.ScreenC1Login));
+ReactDOM.createRoot(document.getElementById('b')).render(React.createElement(window.ScreenM1Dashboard));
+</script>
+<script src="../deck-stage.js"></script>
+</body></html>

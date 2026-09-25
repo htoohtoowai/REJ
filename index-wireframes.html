@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="design_doc_mode" content="canvas"/>
+<title>Screen Library — ワイヤーフレーム探索</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kurenaido&family=Architects+Daughter&display=swap" rel="stylesheet"/>
+<style>
+:root{--ink:#1D1D1B;--soft:#8A8A85;--line:#1D1D1B;--fill:#F0EFEA;--acc:#E8A33D}
+*{box-sizing:border-box}
+body{margin:0;background:#DEDDD7;font-family:"Zen Kurenaido","Architects Daughter",cursive;color:var(--ink)}
+a{color:#A9761F}a:hover{color:#7A5514}
+.frame{position:absolute;background:#FFFDF7;border:2.5px solid var(--line);border-radius:6px;overflow:hidden}
+.cap{position:absolute;width:900px;font-size:26px;font-weight:400}
+.cap b{font-size:20px;background:var(--acc);padding:2px 10px;border-radius:4px;margin-right:10px}
+.cap i{display:block;font-style:normal;font-size:17px;color:#5C5C57;margin-top:6px;max-width:900px;line-height:1.5}
+.pad{padding:22px 26px}
+.bar{display:flex;align-items:center;gap:10px;border-bottom:2px solid var(--line);padding:14px 26px}
+.logo{width:30px;height:30px;border:2px solid var(--line);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.t{font-size:19px}.s{font-size:15px;color:var(--soft)}.xs{font-size:13px;color:var(--soft)}
+.sp{flex:1}
+.btn{border:2px solid var(--line);border-radius:5px;padding:5px 13px;font-size:14px;background:#fff}
+.btn.f{background:var(--acc)}
+.seg{display:flex;border:2px solid var(--line);border-radius:5px;overflow:hidden;font-size:13px}
+.seg div{padding:5px 12px;border-right:2px solid var(--line)}
+.seg div:last-child{border-right:0}
+.seg div.on{background:var(--ink);color:#fff}
+.hero{border:2px dashed var(--line);border-radius:6px;background:var(--fill);padding:24px;margin-bottom:22px}
+.hero h1{font-size:30px;margin:0 0 10px;font-weight:400;line-height:1.25}
+.hero .row{display:flex;gap:10px;margin-top:16px}
+.sec{margin-bottom:26px}
+.sech{display:flex;align-items:baseline;gap:10px;border-bottom:2px solid var(--line);padding-bottom:7px;margin-bottom:14px}
+.sech .t{letter-spacing:.06em}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.card{border:2px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+.th{height:96px;background:var(--fill);border-bottom:2px solid var(--line);position:relative}
+.th::before,.th::after{content:"";position:absolute;inset:0;border-top:2px solid #C9C8C1}
+.th::before{transform:rotate(11deg) scale(1.6)}
+.th::after{transform:rotate(-11deg) scale(1.6)}
+.th span{position:absolute;right:8px;bottom:5px;font-size:22px;color:#B8B7B0}
+.cb{padding:9px 11px}
+.ln{height:9px;background:var(--fill);border:1.5px solid #CFCEC7;border-radius:3px}
+.ln.w6{width:60%}.ln.w4{width:40%}.ln.w8{width:80%}.ln.w3{width:30%}
+.tag{display:inline-block;border:1.5px solid var(--line);border-radius:999px;font-size:11px;padding:1px 8px}
+.tag.f{background:var(--acc)}
+.split{display:flex;height:100%}
+.side{width:230px;border-right:2px solid var(--line);background:var(--fill);padding:18px 16px}
+.side .grp{font-size:13px;color:var(--soft);margin:16px 0 7px;letter-spacing:.1em}
+.side .it{font-size:15px;padding:6px 9px;border-radius:5px;display:flex;justify-content:space-between}
+.side .it.on{background:var(--ink);color:#fff}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th,.tbl td{border-bottom:1.5px solid #CFCEC7;text-align:left;padding:9px 8px}
+.tbl th{border-bottom:2px solid var(--line);font-weight:400;color:var(--soft);font-size:13px}
+.tbl td .ln{height:8px}
+.flowrow{display:flex;align-items:stretch;gap:0;margin-bottom:22px}
+.stage{flex:1;border:2px solid var(--line);border-radius:6px;background:#fff;padding:12px;margin-right:26px;position:relative}
+.stage:last-child{margin-right:0}
+.stage::after{content:"→";position:absolute;right:-22px;top:50%;transform:translateY(-50%);font-size:20px}
+.stage:last-child::after{display:none}
+.stage .h{font-size:15px;border-bottom:2px solid var(--line);padding-bottom:6px;margin-bottom:9px}
+.chip{border:1.5px solid var(--line);border-radius:4px;font-size:12px;padding:4px 6px;margin-bottom:6px;background:#fff;display:flex;justify-content:space-between;gap:6px}
+.chip.b{background:var(--fill)}
+.swim{display:flex;gap:10px;font-size:12px;color:var(--soft);margin-bottom:8px}
+.prev{flex:1;background:var(--fill);display:flex;flex-direction:column}
+.prevbar{border-bottom:2px solid var(--line);padding:12px 18px;display:flex;align-items:center;gap:10px;background:#fff}
+.mock{margin:18px;border:2px solid var(--line);border-radius:6px;background:#fff;flex:1;padding:14px}
+.mockbar{height:22px;background:var(--fill);border:1.5px solid #CFCEC7;border-radius:3px;margin-bottom:10px}
+.mockg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
+.mockb{height:56px;background:var(--fill);border:1.5px solid #CFCEC7;border-radius:3px}
+.note{position:absolute;width:250px;font-size:15px;color:#5C5C57;background:#FFF6D9;border:1.5px solid #D9C57F;border-radius:5px;padding:8px 11px;line-height:1.45}
+.rail{display:flex;gap:8px;overflow:hidden;margin-bottom:14px}
+.rail .card{flex:0 0 150px}
+</style>
+</head>
+<body>
+
+<div class="cap" style="left:80px;top:44px;font-size:32px"><b>WIREFRAME</b>画面ライブラリ (index.html) — 4方向</div>
+
+<!-- A -->
+<div class="cap" style="left:80px;top:150px"><b>A</b>現行踏襲・ロール別グリッド<i>ヒーロー＋役割ごとのカードグリッド。初見の一覧性は高いが、38画面をスクロールで探すことになる。</i></div>
+<div class="frame" style="left:80px;top:250px;width:960px;height:1260px">
+  <div class="bar"><div class="logo">L</div><div><div class="t">LENZ Connect</div><div class="xs">SCREEN LIBRARY · 38 screens × 2 lang</div></div><div class="sp"></div><div class="seg"><div class="on">日本語</div><div>EN</div></div></div>
+  <div class="pad">
+    <div class="hero"><div class="xs" style="letter-spacing:.2em">THE MAP OF THE SYSTEM</div><h1>物件情報を一元管理。<br/>出稿の手間を、価値ある時間に。</h1><div class="s">38画面 / 19フロー / 全状態</div><div class="row"><div class="btn f">管理会社 →</div><div class="btn">仲介会社 →</div><div class="btn">共通 →</div></div></div>
+    <div class="sec"><div class="sech"><div class="t">管理会社</div><div class="xs">33 画面</div><div class="sp"></div><div class="xs">PREFIX: M</div></div>
+      <div class="g3">
+        <div class="card"><div class="th"><span>M1</span></div><div class="cb"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px"><span class="xs">M1</span><span class="tag f">MVP</span></div><div class="ln w8"></div><div class="ln w4" style="margin-top:6px"></div></div></div>
+        <div class="card"><div class="th"><span>M2</span></div><div class="cb"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px"><span class="xs">M2</span><span class="tag f">MVP</span></div><div class="ln w6"></div><div class="ln w3" style="margin-top:6px"></div></div></div>
+        <div class="card"><div class="th"><span>M3</span></div><div class="cb"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px"><span class="xs">M3.1</span><span class="tag f">MVP</span></div><div class="ln w8"></div><div class="ln w4" style="margin-top:6px"></div></div></div>
+        <div class="card"><div class="th"><span>M4</span></div><div class="cb"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px"><span class="xs">M4</span><span class="tag f">MVP</span></div><div class="ln w6"></div><div class="ln w4" style="margin-top:6px"></div></div></div>
+        <div class="card"><div class="th"><span>M5</span></div><div class="cb"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px"><span class="xs">M5</span><span class="tag f">MVP</span></div><div class="ln w8"></div><div class="ln w3" style="margin-top:6px"></div></div></div>
+        <div class="card"><div class="th"><span>M6</span></div><div class="cb"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px"><span class="xs">M6</span><span class="tag">P2</span></div><div class="ln w6"></div><div class="ln w4" style="margin-top:6px"></div></div></div>
+      </div>
+      <div class="xs" style="text-align:center;margin-top:12px">… 27 screens more ↓</div>
+    </div>
+    <div class="sec"><div class="sech"><div class="t">仲介会社</div><div class="xs">23 画面</div><div class="sp"></div><div class="xs">PREFIX: B</div></div>
+      <div class="g3">
+        <div class="card"><div class="th"><span>B1</span></div><div class="cb"><div class="ln w6"></div></div></div>
+        <div class="card"><div class="th"><span>B2</span></div><div class="cb"><div class="ln w8"></div></div></div>
+        <div class="card"><div class="th"><span>B3</span></div><div class="cb"><div class="ln w4"></div></div></div>
+      </div>
+    </div>
+    <div class="sec"><div class="sech"><div class="t">共通</div><div class="xs">7 画面</div></div>
+      <div class="g3"><div class="card"><div class="th"><span>C1</span></div><div class="cb"><div class="ln w6"></div></div></div><div class="card"><div class="th"><span>C2</span></div><div class="cb"><div class="ln w4"></div></div></div><div class="card"><div class="th"><span>C5</span></div><div class="cb"><div class="ln w8"></div></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- B -->
+<div class="cap" style="left:1120px;top:150px"><b>B</b>サイドバー＋仕様テーブル<i>左に恒久ナビ、右は密度の高い表。ID・優先度・状態・更新日で並べ替えでき、レビュー時の「探す・照合する」に強い。</i></div>
+<div class="frame" style="left:1120px;top:250px;width:1080px;height:1274px">
+  <div class="bar"><div class="logo">L</div><div class="t">Screen Library</div><div class="sp"></div><div class="btn">🔍 検索 / ID・画面名</div><div class="seg"><div class="on">JP</div><div>EN</div></div></div>
+  <div class="split" style="height:calc(100% - 62px)">
+    <div class="side">
+      <div class="grp">ROLE</div>
+      <div class="it on">管理会社 <span>33</span></div>
+      <div class="it">仲介会社 <span>23</span></div>
+      <div class="it">共通 <span>7</span></div>
+      <div class="grp">業務フロー</div>
+      <div class="it">登録・編集 <span>11</span></div>
+      <div class="it">出稿 <span>4</span></div>
+      <div class="it">内見 <span>4</span></div>
+      <div class="it">申込・審査 <span>14</span></div>
+      <div class="grp">優先度</div>
+      <div class="it">MVP <span>20</span></div>
+      <div class="it">P2 <span>16</span></div>
+      <div class="it">P3 <span>2</span></div>
+      <div class="grp">種別</div>
+      <div class="it">画面 <span>38</span></div>
+      <div class="it">モーダル <span>11</span></div>
+      <div class="it">ステップ <span>14</span></div>
+    </div>
+    <div style="flex:1;padding:18px 22px;overflow:hidden">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><div class="t">管理会社 · 33 画面</div><div class="sp"></div><div class="seg"><div class="on">表</div><div>カード</div></div><div class="btn">CSV</div></div>
+      <table class="tbl">
+        <tr><th>ID</th><th>画面名</th><th>種別</th><th>優先</th><th>状態</th><th>更新</th></tr>
+        <tr><td>M1</td><td><div class="ln w6"></div></td><td>画面</td><td><span class="tag f">MVP</span></td><td>確定</td><td>08/21</td></tr>
+        <tr><td>M2</td><td><div class="ln w8"></div></td><td>画面</td><td><span class="tag f">MVP</span></td><td>確定</td><td>08/21</td></tr>
+        <tr><td>M2.a</td><td><div class="ln w4"></div></td><td>モーダル</td><td><span class="tag f">MVP</span></td><td>確定</td><td>08/19</td></tr>
+        <tr><td>M2.b</td><td><div class="ln w6"></div></td><td>モーダル</td><td><span class="tag f">MVP</span></td><td>確定</td><td>08/19</td></tr>
+        <tr><td>M3.1</td><td><div class="ln w8"></div></td><td>ステップ</td><td><span class="tag f">MVP</span></td><td>確定</td><td>08/14</td></tr>
+        <tr><td>M3.2</td><td><div class="ln w6"></div></td><td>ステップ</td><td><span class="tag f">MVP</span></td><td>確定</td><td>08/14</td></tr>
+        <tr><td>M4</td><td><div class="ln w8"></div></td><td>画面</td><td><span class="tag f">MVP</span></td><td>要確認</td><td>08/22</td></tr>
+        <tr><td>M5</td><td><div class="ln w4"></div></td><td>画面</td><td><span class="tag f">MVP</span></td><td>確定</td><td>08/12</td></tr>
+        <tr><td>M5b</td><td><div class="ln w6"></div></td><td>画面</td><td><span class="tag f">MVP</span></td><td>確定</td><td>08/12</td></tr>
+        <tr><td>M11</td><td><div class="ln w8"></div></td><td>画面</td><td><span class="tag f">MVP</span></td><td>高リスク</td><td>08/20</td></tr>
+        <tr><td>M12</td><td><div class="ln w6"></div></td><td>画面</td><td><span class="tag f">MVP</span></td><td>確定</td><td>08/18</td></tr>
+        <tr><td>M13</td><td><div class="ln w4"></div></td><td>画面</td><td><span class="tag">P2</span></td><td>確定</td><td>08/18</td></tr>
+        <tr><td>M14.1</td><td><div class="ln w8"></div></td><td>ステップ</td><td><span class="tag">P2</span></td><td>確定</td><td>08/16</td></tr>
+        <tr><td>M14a</td><td><div class="ln w6"></div></td><td>モーダル</td><td><span class="tag">P2</span></td><td>高リスク</td><td>08/16</td></tr>
+        <tr><td>M15</td><td><div class="ln w4"></div></td><td>画面</td><td><span class="tag">P2</span></td><td>確定</td><td>08/10</td></tr>
+        <tr><td>M16</td><td><div class="ln w6"></div></td><td>画面</td><td><span class="tag">P2</span></td><td>確定</td><td>08/10</td></tr>
+        <tr><td>M17</td><td><div class="ln w8"></div></td><td>画面</td><td><span class="tag">P3</span></td><td>下書き</td><td>08/05</td></tr>
+      </table>
+      <div class="xs" style="margin-top:12px">1–17 / 33 &nbsp; ‹ ›</div>
+    </div>
+  </div>
+</div>
+<div class="note" style="left:2230px;top:560px">状態列（確定／要確認／高リスク／下書き）が入ると、そのまま進捗レビューの台になる。</div>
+
+<!-- C -->
+<div class="cap" style="left:80px;top:1584px"><b>C</b>業務フロー・マップ<i>ロールではなく業務の順番で並べる。左から右へ「登録→出稿→内見→申込→契約」、上下は管理会社／仲介会社のレーン。抜けや受け渡し（★）が見える。</i></div>
+<div class="frame" style="left:80px;top:1684px;width:1440px;height:900px">
+  <div class="bar"><div class="logo">L</div><div class="t">Screen Library — フロー表示</div><div class="sp"></div><div class="seg"><div>ロール別</div><div class="on">フロー別</div><div>優先度別</div></div></div>
+  <div class="pad">
+    <div class="swim"><span>▲ 管理会社レーン</span></div>
+    <div class="flowrow">
+      <div class="stage"><div class="h">① 登録・編集</div><div class="chip"><span>M3.1–3.3 新規</span><span class="tag f">MVP</span></div><div class="chip"><span>M4 概要</span><span class="tag f">MVP</span></div><div class="chip"><span>M5 / M5b</span><span class="tag f">MVP</span></div><div class="chip"><span>M6 取引</span><span class="tag f">MVP</span></div><div class="chip"><span>M8 画像 36pt</span><span class="tag f">MVP</span></div></div>
+      <div class="stage"><div class="h">② 出稿</div><div class="chip"><span>M7 掲載情報</span><span class="tag f">MVP</span></div><div class="chip b"><span>M11 出稿 ★高リスク</span></div><div class="chip"><span>M11.b 停止</span><span class="tag f">MVP</span></div><div class="chip"><span>M9 パノラマ</span><span class="tag">P2</span></div></div>
+      <div class="stage"><div class="h">③ 内見</div><div class="chip"><span>M12 週ビュー</span><span class="tag f">MVP</span></div></div>
+      <div class="stage"><div class="h">④ 申込・審査</div><div class="chip"><span>M13 一覧</span><span class="tag">P2</span></div><div class="chip"><span>M14.1–14.5</span><span class="tag">P2</span></div><div class="chip b"><span>M14a 承認 ★高リスク</span></div><div class="chip"><span>M14b 否認</span><span class="tag">P2</span></div></div>
+      <div class="stage"><div class="h">⑤ 契約・連携</div><div class="chip"><span>GMO Sign</span><span class="tag">P2</span></div><div class="chip"><span>Obic ERP</span><span class="tag">P2</span></div><div class="chip"><span>M16 CSV</span><span class="tag">P2</span></div></div>
+    </div>
+    <div style="border-top:2px dashed var(--line);margin:6px 0 16px"></div>
+    <div class="swim"><span>▼ 仲介会社レーン (Connect Square)</span></div>
+    <div class="flowrow">
+      <div class="stage"><div class="h">① 探す</div><div class="chip"><span>B1 ホーム</span><span class="tag">P2</span></div><div class="chip"><span>B2 絞り込み</span><span class="tag">P2</span></div><div class="chip"><span>B3 地図</span><span class="tag">P2</span></div><div class="chip"><span>B4 結果</span><span class="tag">P2</span></div></div>
+      <div class="stage"><div class="h">② 提案</div><div class="chip"><span>B5 詳細</span><span class="tag">P2</span></div><div class="chip"><span>B6 接客モード</span><span class="tag">P2</span></div><div class="chip"><span>B13 初期費用</span><span class="tag">P2</span></div></div>
+      <div class="stage"><div class="h">③ 内見 ★</div><div class="chip b"><span>B7 予約 → M12</span></div><div class="chip"><span>B8 My 内見</span><span class="tag">P2</span></div></div>
+      <div class="stage"><div class="h">④ 申込 ★</div><div class="chip"><span>B9.1–9.5</span><span class="tag">P2</span></div><div class="chip b"><span>B10 送信 → M13</span></div><div class="chip"><span>B11 My 申込</span><span class="tag">P2</span></div></div>
+      <div class="stage"><div class="h">⑤ 追跡</div><div class="chip"><span>B11.a 取り下げ</span><span class="tag">P2</span></div><div class="chip"><span>B12 チャット</span><span class="tag">P2</span></div></div>
+    </div>
+    <div class="xs" style="margin-top:6px">★ = 両者の受け渡し点。共通画面 (C1–C5) は全レーンの土台として下部に常設。</div>
+  </div>
+</div>
+<div class="note" style="left:80px;top:2614px">見積のフェーズ分割（Phase 1 / 2）をこのマップに色で重ねると、そのまま合意用の1枚になる。</div>
+
+<!-- D -->
+<div class="cap" style="left:1600px;top:1584px"><b>D</b>一覧＋プレビュー（マスター・ディテール）<i>左のリストを選ぶと右に実画面と仕様が出る。画面を行き来せずに次々確認できるレビュー向け。</i></div>
+<div class="frame" style="left:1600px;top:1684px;width:1240px;height:934px">
+  <div class="bar"><div class="logo">L</div><div class="t">Screen Library</div><div class="sp"></div><div class="btn">🔍</div><div class="seg"><div class="on">JP</div><div>EN</div></div><div class="btn">仕様書PPTX</div></div>
+  <div class="split" style="height:calc(100% - 62px)">
+    <div class="side" style="width:290px">
+      <div class="btn" style="width:100%;margin-bottom:12px">🔍 ID・画面名で絞り込み</div>
+      <div class="grp">管理会社 · 33</div>
+      <div class="it">M1 ダッシュボード</div>
+      <div class="it on">M11 出稿コントロール ★</div>
+      <div class="it">M11.b 出稿停止</div>
+      <div class="it">M12 内見予約</div>
+      <div class="it">M13 申込一覧</div>
+      <div class="it">M14.1 受信</div>
+      <div class="it">M14a 承認 ★</div>
+      <div class="grp">仲介会社 · 23</div>
+      <div class="it">B4 検索結果</div>
+      <div class="it">B5 物件詳細</div>
+      <div class="it">B9.1 申込①</div>
+      <div class="grp">共通 · 7</div>
+      <div class="it">C1 ログイン</div>
+    </div>
+    <div class="prev">
+      <div class="prevbar"><span class="tag f">M11</span><div class="t">出稿コントロール</div><span class="xs">Publish Controls</span><div class="sp"></div><div class="seg"><div class="on">画面</div><div>仕様</div><div>遷移</div></div><div class="btn">↗ 実画面</div></div>
+      <div class="mock">
+        <div class="mockbar"></div>
+        <div style="display:flex;gap:10px;margin-bottom:12px"><div class="ln w3"></div><div class="ln w3"></div></div>
+        <div class="mockg"><div class="mockb"></div><div class="mockb"></div><div class="mockb"></div><div class="mockb"></div><div class="mockb"></div><div class="mockb"></div></div>
+        <div style="margin-top:14px" class="ln w8"></div>
+        <div style="margin-top:8px" class="ln w6"></div>
+      </div>
+      <div style="border-top:2px solid var(--line);padding:14px 18px;background:#fff">
+        <div class="xs" style="letter-spacing:.14em;margin-bottom:6px">目的</div>
+        <div class="ln w8"></div><div class="ln w6" style="margin-top:6px"></div>
+        <div style="display:flex;gap:8px;margin-top:12px"><span class="tag">管理会社</span><span class="tag f">MVP</span><span class="tag">高リスク操作</span><span class="tag">遷移: M7 / M8 → M11</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="note" style="left:2870px;top:1744px">画面／仕様／遷移のタブ切替で、既存の仕様書PPTXと同じ情報をこの場で読める。</div>
+
+</body>
+</html>
